@@ -1,0 +1,6 @@
+package Rules 
+
+context Person inv: self.age >=0
+context Person inv: self.parents->forAll(p|p.age>self.age)
+context Person::getsChild() post: self.childs->notEmpty() and self.childs->size() > self.childs@pre->size()
+endpackage
