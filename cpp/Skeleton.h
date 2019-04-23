@@ -9,8 +9,9 @@ private:
   bool hasPre = false;
   bool hasPost = false;
   bool isInv = false;
-
+	
   std::string cs = "";
+  
 public:
   void process(Visitable *v);
 
@@ -192,6 +193,8 @@ public:
   void visitDouble(Double x);
   void visitString(String x);
   void visitIdent(Ident x);
+  
+  void print(String x);
 };
 
 #endif

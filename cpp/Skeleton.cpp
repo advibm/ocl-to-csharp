@@ -59,25 +59,41 @@ void Skeleton::visitMultiplyOperator(MultiplyOperator *t) {} // abstract class
 void Skeleton::visitUnaryOperator(UnaryOperator *t) {}       // abstract class
 void Skeleton::visitPostfixOperator(PostfixOperator *t) {}   // abstract class
 
+  struct Object {
+	  std::string classname;
+	  std::string operation = "";
+	  std::string type;
+	  std::string before;
+	  std::string after;
+  };
+  
+  std::string cs2 = "";
+  int number;
+  Object object[99];
+  std::string xxx = "";
+  
+void Skeleton::print(String x){
+	cs2 += "\n" + x;
+}
+
 void Skeleton::visitOCLf(OCLf *oc_lf) {
   /* Code For OCLf Goes Here */
-
+  number = 0;
   oc_lf->listoclpackage_->accept(this);
-
-  std::cout << "C#: " << cs << std::endl;
+  std::cout << "\nC#: " << cs << std::endl;
+  std::cout << "\nXML:" << cs2 << std::endl;
 }
 
 void Skeleton::visitPack(Pack *pack) {
   /* Code For Pack Goes Here */
-
   pack->packagename_->accept(this);
   pack->oclexpressions_->accept(this);
 }
 
 void Skeleton::visitPackName(PackName *pack_name) {
   /* Code For PackName Goes Here */
-
   pack_name->pathname_->accept(this);
+  
 }
 
 void Skeleton::visitConstraints(Constraints *constraints) {
@@ -88,11 +104,30 @@ void Skeleton::visitConstraints(Constraints *constraints) {
 
 void Skeleton::visitConstr(Constr *constr) {
   /* Code For Constr Goes Here */
-
+  std::cerr << "\n" << number << "." << std::endl;
   std::cerr << __func__ << std::endl;
   cs += "\n\t";
+  print("\nObject " + std::to_string(number));
+  
+  number++;
+  xxx = "";
   constr->contextdeclaration_->accept(this);
   constr->listconstrbody_->accept(this);
+  
+  if (hasPre)
+	object[number].before = xxx;
+  else if (hasPost)
+	object[number].after = xxx;
+  else {
+	object[number].before = xxx;
+	object[number].after = xxx;
+  }
+  print("Before: " + object[number].before);
+  print("After: " + object[number].after);
+  
+  hasPre = false;
+  hasPost = false;
+  isInv = false;
 }
 
 void Skeleton::visitCBDefNamed(CBDefNamed *cb_def_named) {
@@ -147,6 +182,10 @@ void Skeleton::visitCC(CC *cc) {
 
   visitIdent(cc->ident_);
   cs += "/* " + cc->ident_ + " */ ";
+  
+  object[number].classname = cc->ident_;
+  print("Class: " + object[number].classname);
+  
   std::cerr << __func__ << ": " << cc->ident_ << std::endl;
 }
 
@@ -155,7 +194,10 @@ void Skeleton::visitOpC(OpC *op_c) {
 
   visitIdent(op_c->ident_);
   cs += "/* " + op_c->ident_;
-
+  
+  object[number].classname = op_c->ident_;
+  print("Class: " + object[number].classname);
+  
   std::cerr << __func__ << ": " << op_c->ident_ << std::endl;
   op_c->operationname_->accept(this);
   op_c->listformalparameter_->accept(this);
@@ -171,17 +213,43 @@ void Skeleton::visitOpCRT(OpCRT *op_crt) {
   op_crt->returntype_->accept(this);
 }
 
-void Skeleton::visitPre(Pre *pre) { hasPre = true; }
+void Skeleton::visitPre(Pre *pre) { 
+	hasPre = true; 
+	std::cerr << __func__ << ": " << hasPre << std::endl;
+	
+	object[number].after = "true";
+	object[number].type = "pre";
+	print("Type: " + object[number].type);
+}
 
-void Skeleton::visitPost(Post *post) { hasPost = true; }
+void Skeleton::visitPost(Post *post) {
+	hasPost = true; 
+	std::cerr << __func__ << ": " << hasPost << std::endl;
+	
+	object[number].before = "true";
+	object[number].type = "post";
+	print("Type: " + object[number].type);
+}
 
-void Skeleton::visitInv(Inv *inv) { isInv = true; }
+void Skeleton::visitInv(Inv *inv) {
+	isInv = true;
+	std::cerr << __func__ << ": " << isInv << std::endl;
+	
+	object[number].operation = "None";
+	print("Operation: " + object[number].operation);
+	object[number].type = "inv";
+	print("Type: " + object[number].type);
+}
 
 void Skeleton::visitOpName(OpName *op_name) {
   /* Code For OpName Goes Here */
 
   visitIdent(op_name->ident_);
   cs += ", proxify " + op_name->ident_ + " */ ";
+  
+  object[number].operation = op_name->ident_;
+  print("Operation: " + object[number].operation);
+  
   std::cerr << __func__ << ": " << op_name->ident_ << std::endl;
 }
 
@@ -448,14 +516,22 @@ void Skeleton::visitPN(PN *pn) {
   /* Code For PN Goes Here */
 
   visitIdent(pn->ident_);
-  if (pn->ident_ == "forAll")
+  if (pn->ident_ == "forAll") {
     cs += "All";
-  else if (pn->ident_ == "notEmpty")
+	xxx += "All";
+  }
+  else if (pn->ident_ == "notEmpty") {
     cs += "Count > 0";
-  else if (pn->ident_ == "size")
+	xxx += "Count > 0";
+  }
+  else if (pn->ident_ == "size") {
     cs += "Count";
-  else
+	xxx += "Count";
+  }
+  else {
     cs += pn->ident_;
+	xxx += pn->ident_;
+  }
   std::cerr << __func__ << ": " << pn->ident_ << std::endl;
 }
 
@@ -536,13 +612,18 @@ void Skeleton::visitPCPNoDeclNoParam(PCPNoDeclNoParam *pcp_no_decl_no_param) {
 
 void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
   /* Code For PCPConcrete Goes Here */
-
+ 
   cs += "(";
+  xxx += "(";
+  
   pcp_concrete->expression_->accept(this);
   std::cerr << "'|'" << std::endl;
   cs += " => ";
+  xxx += " => ";
+  
   pcp_concrete->listpcphelper_->accept(this);
   cs += ")";
+  xxx += ")";
 }
 
 void Skeleton::visitPCPComma(PCPComma *pcp_comma) {
@@ -628,21 +709,27 @@ void Skeleton::visitNumInt(NumInt *num_int) {
 
   visitInteger(num_int->integer_);
   cs += std::to_string(num_int->integer_);
+  xxx += std::to_string(num_int->integer_);
 }
 
 void Skeleton::visitNumDouble(NumDouble *num_double) {
   /* Code For NumDouble Goes Here */
 
   visitDouble(num_double->double_);
-  cs += std::to_string(num_double->double_);
+  std::string temp;
+  temp = std::to_string(num_double->double_);
+  cs += temp;
+  xxx += temp;
 }
 
 void Skeleton::visitLAnd(LAnd *l_and) { /* Code For LAnd Goes Here */
   cs += " && ";
+  xxx += " && ";
 }
 
 void Skeleton::visitLOr(LOr *l_or) { /* Code For LOr Goes Here */
   cs += " || ";
+  xxx += " || ";
 }
 
 void Skeleton::visitLXor(LXor *l_xor) { /* Code For LXor Goes Here */
@@ -664,42 +751,52 @@ void Skeleton::visitCollection(Collection *collection) {
 
 void Skeleton::visitEEq(EEq *e_eq) { /* Code For EEq Goes Here */
   cs += "==";
+  xxx += "==";
 }
 
 void Skeleton::visitENEq(ENEq *en_eq) { /* Code For ENEq Goes Here */
   cs += "!=";
+  xxx += "!=";
 }
 
 void Skeleton::visitRGT(RGT *rgt) { /* Code For RGT Goes Here */
   cs += ">";
+  xxx += ">";
 }
 
 void Skeleton::visitRGTE(RGTE *rgte) { /* Code For RGTE Goes Here */
   cs += ">=";
+  xxx += ">=";
 }
 
 void Skeleton::visitRLT(RLT *rlt) { /* Code For RLT Goes Here */
   cs += "<";
+  xxx += "<";
 }
 
 void Skeleton::visitRLTE(RLTE *rlte) { /* Code For RLTE Goes Here */
   cs += "<=";
+  xxx += "<=";
 }
 
 void Skeleton::visitAAdd(AAdd *a_add) { /* Code For AAdd Goes Here */
   cs += "+";
+  xxx += "+";
 }
 
 void Skeleton::visitASub(ASub *a_sub) { /* Code For ASub Goes Here */
   cs += "-";
+  xxx += "-";
 }
 
 void Skeleton::visitMMult(MMult *m_mult) { /* Code For MMult Goes Here */
   cs += "*";
+  xxx += "*";
 }
 
 void Skeleton::visitMDiv(MDiv *m_div) { /* Code For MDiv Goes Here */
   cs += "/";
+  xxx += "/";
 }
 
 void Skeleton::visitUMin(UMin *u_min) { /* Code For UMin Goes Here */
@@ -711,11 +808,13 @@ void Skeleton::visitUNot(UNot *u_not) { /* Code For UNot Goes Here */
 void Skeleton::visitPDot(PDot *p_dot) { /* Code For PDot Goes Here */
   std::cerr << "'.'" << std::endl;
   cs += ".";
+  xxx += ".";
 }
 
 void Skeleton::visitPArrow(PArrow *p_arrow) { /* Code For PArrow Goes Here */
   std::cerr << "'->'" << std::endl;
   cs += ".";
+  xxx += ".";
 }
 
 void Skeleton::visitListOCLPackage(ListOCLPackage *list_ocl_package) {
@@ -809,5 +908,5 @@ void Skeleton::visitDouble(Double x) { /* Code for Double Goes Here */
 void Skeleton::visitString(String x) { /* Code for String Goes Here */
 }
 
-void Skeleton::visitIdent(Ident x) { /* Code for Ident Goes Here */
+void Skeleton::visitIdent(Ident x) { /* Code for numberent Goes Here */
 }
