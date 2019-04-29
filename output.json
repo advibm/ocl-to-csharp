@@ -1,0 +1,64 @@
+{
+    "after": "this.alter>=0",
+    "before": "this.alter>=0",
+    "class": "Person",
+    "type": "inv"
+}
+{
+    "after": "this.eltern.All(e => e.alter>this.alter)",
+    "before": "this.eltern.All(e => e.alter>this.alter)",
+    "class": "Person",
+    "type": "inv"
+}
+{
+    "after": "this.alter==pre.alter+1",
+    "atPre": true,
+    "before": true,
+    "class": "Person",
+    "operation": "hatGeburtstag",
+    "type": "post"
+}
+{
+    "after": "this.eltern.Count<=2",
+    "before": "this.eltern.Count<=2",
+    "class": "Person",
+    "type": "inv"
+}
+{
+    "after": "this.kinder.Count > 0 && this.kinder.Count>pre.kinder.Count",
+    "atPre": true,
+    "before": true,
+    "class": "Person",
+    "operation": "bekommtKind",
+    "type": "post"
+}
+{
+    "after": "if (this.alter<18) {this.autos.isEmpty}",
+    "before": "if (this.alter<18) {this.autos.isEmpty}",
+    "class": "Person",
+    "type": "inv"
+}
+{
+    "after": "this.erstzulassung>=this.baujahr",
+    "before": "this.erstzulassung>=this.baujahr",
+    "class": "Auto",
+    "type": "inv"
+}
+{
+    "after": "if (this.autos.Count > 0) {this.autos.Exists(a => DateTime.Today.Year-a.baujahr<this.alter)}",
+    "before": "if (this.autos.Count > 0) {this.autos.Exists(a => DateTime.Today.Year-a.baujahr<this.alter)}",
+    "class": "Person",
+    "type": "inv"
+}
+{
+    "after": "!this.eltern.Exists(p => p != this)",
+    "before": "!this.eltern.Exists(p => p != this)",
+    "class": "Person",
+    "type": "inv"
+}
+{
+    "after": "Person.allInstances.Exists(p => p.autos.Count>0)",
+    "before": "Person.allInstances.Exists(p => p.autos.Count>0)",
+    "class": "Person",
+    "type": "inv"
+}

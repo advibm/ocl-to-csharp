@@ -3,6 +3,7 @@
 /* You might want to change the above name. */
 
 #include "Absyn.H"
+#include "json.hpp"
 
 class Skeleton : public Visitor {
 private:

@@ -1,6 +1,14 @@
 package Rules 
 
-context Person inv: self.age >=0
-context Person inv: self.parents->forAll(p|p.age>self.age)
-context Person::getsChild() post: self.childs->notEmpty() and self.childs->size() > self.childs@pre->size()
+    context Person inv: self.alter >=0
+    context Person inv: self.eltern->forAll(e|e.alter>self.alter)
+    context Person::hatGeburtstag() post: self.alter=self.alter@pre+1
+    context Person inv: self.eltern->size()<=2
+    context Person::bekommtKind() post: self.kinder->notEmpty() and self.kinder->size() > self.kinder@pre->size()
+    context Person inv: self.alter<18 implies self.autos->isEmpty()
+    context Auto inv: self.erstzulassung>=self.baujahr
+    context Person inv: self.autos->notEmpty() implies self.autos->exists( a | Calendar.YEAR - a.baujahr < self.alter)
+    context Person inv: self.eltern->excludes(self)
+    context Person inv: Person.allInstances()->exists(p | p.autos->size() > 0)
+
 endpackage

@@ -44,7 +44,7 @@ Parser.o: Parser.cpp Absyn.h
 Printer.o: Printer.cpp Printer.h Absyn.h
 	${CC} ${CCFLAGS} -c Printer.cpp
 
-Skeleton.o: Skeleton.cpp Skeleton.h Absyn.h
+Skeleton.o: Skeleton.cpp Skeleton.h Absyn.h json.hpp
 	${CC} ${CCFLAGS} -Wno-unused-parameter -c Skeleton.cpp
 
 Test.o: Test.cpp Parser.h Printer.h Absyn.h

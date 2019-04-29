@@ -1,4 +1,4 @@
 conv:
 	cd cpp && make
 run: conv
-	./cpp/conv < e0.ocl
+	./cpp/conv.exe < e0.ocl

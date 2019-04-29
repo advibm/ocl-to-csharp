@@ -1,0 +1,7 @@
+{
+    "after": "this.age>=0",
+    "before": "this.age>=0",
+    "class": "Person",
+    "operation": "None",
+    "type": "inv"
+}

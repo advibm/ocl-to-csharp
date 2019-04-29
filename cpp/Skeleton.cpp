@@ -6,6 +6,10 @@
 
 #include "Skeleton.H"
 #include <iostream>
+#include <fstream>
+
+using json = nlohmann::json;
+using namespace std;
 
 void Skeleton::process(Visitable *v) { v->accept(this); }
 
@@ -65,12 +69,15 @@ void Skeleton::visitPostfixOperator(PostfixOperator *t) {}   // abstract class
 	  std::string type;
 	  std::string before;
 	  std::string after;
+	  bool atPre = false;
   };
   
   std::string cs2 = "";
   int number;
   Object object[99];
   std::string xxx = "";
+  bool excludes = false;
+  json j[99];
   
 void Skeleton::print(String x){
 	cs2 += "\n" + x;
@@ -82,6 +89,19 @@ void Skeleton::visitOCLf(OCLf *oc_lf) {
   oc_lf->listoclpackage_->accept(this);
   std::cout << "\nC#: " << cs << std::endl;
   std::cout << "\nXML:" << cs2 << std::endl;
+  
+  // write prettified JSON to another file
+  std::ofstream o("output.json");
+  for (int i=0; i < number; i++) {
+	// j[i]["class"] = object[i].classname;
+	// j[i]["operation"] = object[i].operation;
+	// j[i]["type"] = object[i].type;
+	// j[i]["before"] = object[i].before;
+	// j[i]["after"] = object[i].after;
+	
+    std::cout << std::setw(4) << j[i] << std::endl;
+	o << std::setw(4) << j[i] << std::endl;
+  }
 }
 
 void Skeleton::visitPack(Pack *pack) {
@@ -109,22 +129,30 @@ void Skeleton::visitConstr(Constr *constr) {
   cs += "\n\t";
   print("\nObject " + std::to_string(number));
   
-  number++;
   xxx = "";
   constr->contextdeclaration_->accept(this);
   constr->listconstrbody_->accept(this);
   
-  if (hasPre)
+  if (hasPre) {
 	object[number].before = xxx;
-  else if (hasPost)
+	j[number]["before"] = xxx;
+  }
+  else if (hasPost) {
 	object[number].after = xxx;
+	j[number]["after"] = xxx;
+  }
   else {
 	object[number].before = xxx;
 	object[number].after = xxx;
+	
+	j[number]["before"] = xxx;
+	j[number]["after"] = xxx;
   }
   print("Before: " + object[number].before);
   print("After: " + object[number].after);
   
+  number++;
+  excludes = false;
   hasPre = false;
   hasPost = false;
   isInv = false;
@@ -184,6 +212,7 @@ void Skeleton::visitCC(CC *cc) {
   cs += "/* " + cc->ident_ + " */ ";
   
   object[number].classname = cc->ident_;
+  j[number]["class"] = cc->ident_;
   print("Class: " + object[number].classname);
   
   std::cerr << __func__ << ": " << cc->ident_ << std::endl;
@@ -196,6 +225,7 @@ void Skeleton::visitOpC(OpC *op_c) {
   cs += "/* " + op_c->ident_;
   
   object[number].classname = op_c->ident_;
+  j[number]["class"] = op_c->ident_;
   print("Class: " + object[number].classname);
   
   std::cerr << __func__ << ": " << op_c->ident_ << std::endl;
@@ -217,8 +247,12 @@ void Skeleton::visitPre(Pre *pre) {
 	hasPre = true; 
 	std::cerr << __func__ << ": " << hasPre << std::endl;
 	
-	object[number].after = "true";
 	object[number].type = "pre";
+	object[number].after = "true";
+	
+	j[number]["type"] = "pre";
+	j[number]["after"] = true;
+	
 	print("Type: " + object[number].type);
 }
 
@@ -226,8 +260,11 @@ void Skeleton::visitPost(Post *post) {
 	hasPost = true; 
 	std::cerr << __func__ << ": " << hasPost << std::endl;
 	
-	object[number].before = "true";
 	object[number].type = "post";
+	object[number].before = "true";
+	
+	j[number]["type"] = "post";
+	j[number]["before"] = true;
 	print("Type: " + object[number].type);
 }
 
@@ -236,8 +273,11 @@ void Skeleton::visitInv(Inv *inv) {
 	std::cerr << __func__ << ": " << isInv << std::endl;
 	
 	object[number].operation = "None";
+	// j[number]["operation"] = "None";
 	print("Operation: " + object[number].operation);
+	
 	object[number].type = "inv";
+	j[number]["type"] = "inv";
 	print("Type: " + object[number].type);
 }
 
@@ -248,6 +288,8 @@ void Skeleton::visitOpName(OpName *op_name) {
   cs += ", proxify " + op_name->ident_ + " */ ";
   
   object[number].operation = op_name->ident_;
+  j[number]["operation"] = op_name->ident_;
+  
   print("Operation: " + object[number].operation);
   
   std::cerr << __func__ << ": " << op_name->ident_ << std::endl;
@@ -386,9 +428,11 @@ void Skeleton::visitIfExp(IfExp *if_exp) {
 
 void Skeleton::visitEOpImpl(EOpImpl *e_op_impl) {
   /* Code For EOpImpl Goes Here */
-
+  xxx += "if (";
   e_op_impl->expression_1->accept(this);
+  xxx += ") {";
   e_op_impl->expression_2->accept(this);
+  xxx += "}";
 }
 
 void Skeleton::visitEOpLog(EOpLog *e_op_log) {
@@ -528,6 +572,35 @@ void Skeleton::visitPN(PN *pn) {
     cs += "Count";
 	xxx += "Count";
   }
+  else if (pn->ident_ == "self") {
+    cs += "this";
+	xxx += "this";
+  }
+  else if (pn->ident_ == "exists") {
+    cs += "Exists";
+	xxx += "Exists";
+  }
+  else if (pn->ident_ == "excludes") {
+    //cs = "!" + cs + "Exists";
+	excludes = true;
+	xxx = "!" + xxx + "Exists";
+  }
+  else if (pn->ident_ == "Calendar") {
+    cs += "DateTime.Today";
+	xxx += "DateTime.Today";
+  }
+  else if (pn->ident_ == "YEAR") {
+    cs += "Year";
+	xxx += "Year";
+  }
+  else if (pn->ident_ == "MONTH") {
+    cs += "Month";
+	xxx += "Month";
+  }
+  else if (pn->ident_ == "DAY") {
+    cs += "Day";
+	xxx += "Day";
+  }
   else {
     cs += pn->ident_;
 	xxx += pn->ident_;
@@ -553,7 +626,19 @@ void Skeleton::visitQuals(Quals *quals) {
 void Skeleton::visitNoTE(NoTE *no_te) { /* Code For NoTE Goes Here */
 }
 
-void Skeleton::visitAtPre(AtPre *at_pre) { /* Code For AtPre Goes Here */
+void Skeleton::visitAtPre(AtPre *at_pre) {
+	/* Code For AtPre Goes Here */
+	object[number].atPre = true;
+	j[number]["atPre"] = true;
+	
+	std::size_t found;
+	std::size_t temp = xxx.find("this");
+	while (temp!=std::string::npos) {
+		found = temp;
+		temp = xxx.find("this", found+1);
+	}
+	
+	xxx.replace(found, 4, "pre");
 }
 
 void Skeleton::visitNoPCP(NoPCP *no_pcp) { /* Code For NoPCP Goes Here */
@@ -616,10 +701,17 @@ void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
   cs += "(";
   xxx += "(";
   
-  pcp_concrete->expression_->accept(this);
-  std::cerr << "'|'" << std::endl;
-  cs += " => ";
-  xxx += " => ";
+  if (excludes) {
+	cs += "p => p != ";
+	xxx += "p => p != ";
+	pcp_concrete->expression_->accept(this);
+  }
+  else {
+	pcp_concrete->expression_->accept(this);
+	std::cerr << "'|'" << std::endl;
+	cs += " => ";
+	xxx += " => ";
+  }
   
   pcp_concrete->listpcphelper_->accept(this);
   cs += ")";
