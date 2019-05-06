@@ -1,60 +1,84 @@
 {
-    "AfterCode": "self.alter>=0",
-    "BeforeCode": "self.alter>=0",
+    "AfterCode": "this.alter>=0",
+    "BeforeCode": "this.alter>=0",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": ""
 }
 {
-    "AfterCode": "self.eltern.All(e => e.alter>self.alter)",
-    "BeforeCode": "self.eltern.All(e => e.alter>self.alter)",
+    "AfterCode": "this.eltern.All(e => e.alter>this.alter)",
+    "BeforeCode": "this.eltern.All(e => e.alter>this.alter)",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": ""
 }
 {
-    "AfterCode": "self.alter==pre.alter+1",
-    "BeforeCode": "true",
+    "AfterCode": "this.alter==pre.alter+1",
+    "BeforeCode": true,
     "ContextName": "Person",
-    "FunctionName": "hatGeburtstag"
+    "FunctionName": "hatGeburtstag()"
 }
 {
-    "AfterCode": "self.eltern.Count<=2",
-    "BeforeCode": "self.eltern.Count<=2",
+    "AfterCode": "this.eltern.Count()<=2",
+    "BeforeCode": "this.eltern.Count()<=2",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": "hatGeburtstag()"
 }
 {
-    "AfterCode": "self.kinder.Count > 0 && self.kinder.Count>pre.kinder.Count",
-    "BeforeCode": "true",
+    "AfterCode": "this.kinder.Count > 0() && this.kinder.Count()>pre.kinder.Count()",
+    "BeforeCode": true,
     "ContextName": "Person",
-    "FunctionName": "bekommtKind"
+    "FunctionName": "bekommtKind()"
 }
 {
-    "AfterCode": "if (self.alter<18) {self.autos.isEmpty}",
-    "BeforeCode": "if (self.alter<18) {self.autos.isEmpty}",
+    "AfterCode": "if (this.alter<18) {this.autos.isEmpty()}",
+    "BeforeCode": "if (this.alter<18) {this.autos.isEmpty()}",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": "bekommtKind()"
 }
 {
-    "AfterCode": "self.erstzulassung>=self.baujahr",
-    "BeforeCode": "self.erstzulassung>=self.baujahr",
+    "AfterCode": "this.erstzulassung>=this.baujahr",
+    "BeforeCode": "this.erstzulassung>=this.baujahr",
     "ContextName": "Auto",
-    "FunctionName": null
+    "FunctionName": "bekommtKind()"
 }
 {
-    "AfterCode": "if (self.autos.Count > 0) {self.autos.Exists(a => DateTime.Today.Year-a.baujahr<self.alter)}",
-    "BeforeCode": "if (self.autos.Count > 0) {self.autos.Exists(a => DateTime.Today.Year-a.baujahr<self.alter)}",
+    "AfterCode": "if (this.autos.Count > 0()) {this.autos.Exists(a => DateTime.Today.Year-a.baujahr<this.alter)}",
+    "BeforeCode": "if (this.autos.Count > 0()) {this.autos.Exists(a => DateTime.Today.Year-a.baujahr<this.alter)}",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": "bekommtKind()"
 }
 {
-    "AfterCode": "!self.eltern.Exists(p => p != self)",
-    "BeforeCode": "!self.eltern.Exists(p => p != self)",
+    "AfterCode": "!this.eltern.Exists(p => p != this)",
+    "BeforeCode": "!this.eltern.Exists(p => p != this)",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": "bekommtKind()"
 }
 {
-    "AfterCode": "Person.allInstances.Exists(p => p.autos.Count>0)",
-    "BeforeCode": "Person.allInstances.Exists(p => p.autos.Count>0)",
+    "AfterCode": "Person.allInstances().Exists(p => p.autos.Count()>0)",
+    "BeforeCode": "Person.allInstances().Exists(p => p.autos.Count()>0)",
     "ContextName": "Person",
-    "FunctionName": null
+    "FunctionName": "bekommtKind()"
+}
+{
+    "AfterCode": "this.childs.All(e => e.age<this.age-7)",
+    "BeforeCode": "this.childs.All(e => e.age<this.age-7)",
+    "ContextName": "Person",
+    "FunctionName": "bekommtKind()"
+}
+{
+    "AfterCode": "this.childs.All(e1,e2 => if (e1!=e2) {e1.name!=e2.name})",
+    "BeforeCode": "this.childs.All(e1,e2 => if (e1!=e2) {e1.name!=e2.name})",
+    "ContextName": "Person",
+    "FunctionName": "bekommtKind()"
+}
+{
+    "AfterCode": true,
+    "BeforeCode": "this.isConfirmed()==false && d>e+0.500000",
+    "ContextName": "Meeting",
+    "FunctionName": "shift(int d, double e)"
+}
+{
+    "AfterCode": "this.workschedule.End>ende",
+    "BeforeCode": true,
+    "ContextName": "Maschine",
+    "FunctionName": "FinishWork(int ende)"
 }

@@ -642,12 +642,11 @@ void Skeleton::visitAtPre(AtPre *at_pre) {
   j[number]["atPre"] = true;
 
   std::size_t found;
-  std::size_t temp = xxx.find("self");
+  std::size_t temp = xxx.find("this");
   while (temp != std::string::npos) {
     found = temp;
-    temp = xxx.find("self", found + 1);
+    temp = xxx.find("this", found + 1);
   }
-
   xxx.replace(found, 4, "pre");
 }
 
