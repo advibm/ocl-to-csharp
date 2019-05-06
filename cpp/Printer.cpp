@@ -1,7 +1,7 @@
 /*** BNFC-Generated Pretty Printer and Abstract Syntax Viewer ***/
 
 #include <string>
-#include "Printer.H"
+#include "Printer.h"
 #define INDENT_WIDTH 2
 
 

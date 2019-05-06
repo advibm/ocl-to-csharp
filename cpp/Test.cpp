@@ -6,9 +6,9 @@
 /****************************************************************************/
 #include <stdio.h>
 #include <string.h>
-#include "Parser.H"
-#include "Printer.H"
-#include "Absyn.H"
+#include "Parser.h"
+#include "Printer.h"
+#include "Absyn.h"
 
 void usage() {
   printf("usage: Call with one of the following argument combinations:\n");
@@ -44,7 +44,7 @@ int main(int argc, char ** argv)
       exit(1);
     }
   } else input = stdin;
-  /* The default entry point is used. For other options see Parser.H */
+  /* The default entry point is used. For other options see Parser.h */
   OCLfile *parse_tree = pOCLfile(input);
   if (parse_tree)
   {

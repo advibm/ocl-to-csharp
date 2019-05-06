@@ -4,12 +4,14 @@
    List->accept() does NOT traverse the list. This allows different
    algorithms to use context information differently. */
 
-#include "Skeleton.H"
-#include <iostream>
+#include "Skeleton.h"
 #include <fstream>
+#include <iostream>
 
 using json = nlohmann::json;
 using namespace std;
+
+const static bool DEBUG_PRINT = false;
 
 void Skeleton::process(Visitable *v) { v->accept(this); }
 
@@ -63,44 +65,45 @@ void Skeleton::visitMultiplyOperator(MultiplyOperator *t) {} // abstract class
 void Skeleton::visitUnaryOperator(UnaryOperator *t) {}       // abstract class
 void Skeleton::visitPostfixOperator(PostfixOperator *t) {}   // abstract class
 
-  struct Object {
-	  std::string classname;
-	  std::string operation = "";
-	  std::string type;
-	  std::string before;
-	  std::string after;
-	  bool atPre = false;
-  };
-  
-  std::string cs2 = "";
-  int number;
-  Object object[99];
-  std::string xxx = "";
-  bool excludes = false;
-  json j[99];
-  
-void Skeleton::print(String x){
-	cs2 += "\n" + x;
-}
+struct Object {
+  std::string classname;
+  std::string operation = "";
+  std::string type;
+  std::string before;
+  std::string after;
+  bool atPre = false;
+};
+
+std::string cs2 = "";
+int number;
+Object object[99];
+std::string xxx = "";
+bool excludes = false;
+json j[99];
+
+void Skeleton::print(String x) { cs2 += "\n" + x; }
 
 void Skeleton::visitOCLf(OCLf *oc_lf) {
   /* Code For OCLf Goes Here */
   number = 0;
   oc_lf->listoclpackage_->accept(this);
-  std::cout << "\nC#: " << cs << std::endl;
-  std::cout << "\nXML:" << cs2 << std::endl;
-  
+  if (DEBUG_PRINT) {
+    std::cout << "\nC#: " << cs << std::endl;
+    std::cout << "\nXML:" << cs2 << std::endl;
+  }
+
   // write prettified JSON to another file
   std::ofstream o("output.json");
-  for (int i=0; i < number; i++) {
-	// j[i]["class"] = object[i].classname;
-	// j[i]["operation"] = object[i].operation;
-	// j[i]["type"] = object[i].type;
-	// j[i]["before"] = object[i].before;
-	// j[i]["after"] = object[i].after;
-	
-    std::cout << std::setw(4) << j[i] << std::endl;
-	o << std::setw(4) << j[i] << std::endl;
+  for (int i = 0; i < number; i++) {
+
+    json obj;
+    obj["ContextName"] = j[i]["class"];
+    obj["FunctionName"] = j[i]["operation"];
+    obj["BeforeCode"] = j[i]["before"];
+    obj["AfterCode"] = j[i]["after"];
+
+    std::cout << std::setw(4) << obj << std::endl;
+    o << std::setw(4) << obj << std::endl;
   }
 }
 
@@ -113,7 +116,6 @@ void Skeleton::visitPack(Pack *pack) {
 void Skeleton::visitPackName(PackName *pack_name) {
   /* Code For PackName Goes Here */
   pack_name->pathname_->accept(this);
-  
 }
 
 void Skeleton::visitConstraints(Constraints *constraints) {
@@ -124,33 +126,33 @@ void Skeleton::visitConstraints(Constraints *constraints) {
 
 void Skeleton::visitConstr(Constr *constr) {
   /* Code For Constr Goes Here */
-  std::cerr << "\n" << number << "." << std::endl;
-  std::cerr << __func__ << std::endl;
+  if (DEBUG_PRINT) {
+    std::cerr << "\n" << number << "." << std::endl;
+    std::cerr << __func__ << std::endl;
+  }
   cs += "\n\t";
   print("\nObject " + std::to_string(number));
-  
+
   xxx = "";
   constr->contextdeclaration_->accept(this);
   constr->listconstrbody_->accept(this);
-  
+
   if (hasPre) {
-	object[number].before = xxx;
-	j[number]["before"] = xxx;
-  }
-  else if (hasPost) {
-	object[number].after = xxx;
-	j[number]["after"] = xxx;
-  }
-  else {
-	object[number].before = xxx;
-	object[number].after = xxx;
-	
-	j[number]["before"] = xxx;
-	j[number]["after"] = xxx;
+    object[number].before = xxx;
+    j[number]["before"] = xxx;
+  } else if (hasPost) {
+    object[number].after = xxx;
+    j[number]["after"] = xxx;
+  } else {
+    object[number].before = xxx;
+    object[number].after = xxx;
+
+    j[number]["before"] = xxx;
+    j[number]["after"] = xxx;
   }
   print("Before: " + object[number].before);
   print("After: " + object[number].after);
-  
+
   number++;
   excludes = false;
   hasPre = false;
@@ -210,12 +212,13 @@ void Skeleton::visitCC(CC *cc) {
 
   visitIdent(cc->ident_);
   cs += "/* " + cc->ident_ + " */ ";
-  
+
   object[number].classname = cc->ident_;
   j[number]["class"] = cc->ident_;
   print("Class: " + object[number].classname);
-  
-  std::cerr << __func__ << ": " << cc->ident_ << std::endl;
+
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << cc->ident_ << std::endl;
 }
 
 void Skeleton::visitOpC(OpC *op_c) {
@@ -223,12 +226,13 @@ void Skeleton::visitOpC(OpC *op_c) {
 
   visitIdent(op_c->ident_);
   cs += "/* " + op_c->ident_;
-  
+
   object[number].classname = op_c->ident_;
   j[number]["class"] = op_c->ident_;
   print("Class: " + object[number].classname);
-  
-  std::cerr << __func__ << ": " << op_c->ident_ << std::endl;
+
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << op_c->ident_ << std::endl;
   op_c->operationname_->accept(this);
   op_c->listformalparameter_->accept(this);
 }
@@ -237,48 +241,52 @@ void Skeleton::visitOpCRT(OpCRT *op_crt) {
   /* Code For OpCRT Goes Here */
 
   visitIdent(op_crt->ident_);
-  std::cerr << __func__ << ": " << op_crt->ident_ << std::endl;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << op_crt->ident_ << std::endl;
   op_crt->operationname_->accept(this);
   op_crt->listformalparameter_->accept(this);
   op_crt->returntype_->accept(this);
 }
 
-void Skeleton::visitPre(Pre *pre) { 
-	hasPre = true; 
-	std::cerr << __func__ << ": " << hasPre << std::endl;
-	
-	object[number].type = "pre";
-	object[number].after = "true";
-	
-	j[number]["type"] = "pre";
-	j[number]["after"] = true;
-	
-	print("Type: " + object[number].type);
+void Skeleton::visitPre(Pre *pre) {
+  hasPre = true;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << hasPre << std::endl;
+
+  object[number].type = "pre";
+  object[number].after = "true";
+
+  j[number]["type"] = "pre";
+  j[number]["after"] = "true";
+
+  print("Type: " + object[number].type);
 }
 
 void Skeleton::visitPost(Post *post) {
-	hasPost = true; 
-	std::cerr << __func__ << ": " << hasPost << std::endl;
-	
-	object[number].type = "post";
-	object[number].before = "true";
-	
-	j[number]["type"] = "post";
-	j[number]["before"] = true;
-	print("Type: " + object[number].type);
+  hasPost = true;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << hasPost << std::endl;
+
+  object[number].type = "post";
+  object[number].before = "true";
+
+  j[number]["type"] = "post";
+  j[number]["before"] = "true";
+  print("Type: " + object[number].type);
 }
 
 void Skeleton::visitInv(Inv *inv) {
-	isInv = true;
-	std::cerr << __func__ << ": " << isInv << std::endl;
-	
-	object[number].operation = "None";
-	// j[number]["operation"] = "None";
-	print("Operation: " + object[number].operation);
-	
-	object[number].type = "inv";
-	j[number]["type"] = "inv";
-	print("Type: " + object[number].type);
+  isInv = true;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << isInv << std::endl;
+
+  object[number].operation = "None";
+  // j[number]["operation"] = "None";
+  print("Operation: " + object[number].operation);
+
+  object[number].type = "inv";
+  j[number]["type"] = "inv";
+  print("Type: " + object[number].type);
 }
 
 void Skeleton::visitOpName(OpName *op_name) {
@@ -286,13 +294,14 @@ void Skeleton::visitOpName(OpName *op_name) {
 
   visitIdent(op_name->ident_);
   cs += ", proxify " + op_name->ident_ + " */ ";
-  
+
   object[number].operation = op_name->ident_;
   j[number]["operation"] = op_name->ident_;
-  
+
   print("Operation: " + object[number].operation);
-  
-  std::cerr << __func__ << ": " << op_name->ident_ << std::endl;
+
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << op_name->ident_ << std::endl;
 }
 
 void Skeleton::visitEq(Eq *eq) { /* Code For Eq Goes Here */
@@ -344,7 +353,8 @@ void Skeleton::visitFP(FP *fp) {
   /* Code For FP Goes Here */
 
   visitIdent(fp->ident_);
-  std::cerr << __func__ << ": " << fp->ident_ << std::endl;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << fp->ident_ << std::endl;
   fp->typespecifier_->accept(this);
 }
 
@@ -562,50 +572,41 @@ void Skeleton::visitPN(PN *pn) {
   visitIdent(pn->ident_);
   if (pn->ident_ == "forAll") {
     cs += "All";
-	xxx += "All";
-  }
-  else if (pn->ident_ == "notEmpty") {
+    xxx += "All";
+  } else if (pn->ident_ == "notEmpty") {
     cs += "Count > 0";
-	xxx += "Count > 0";
-  }
-  else if (pn->ident_ == "size") {
+    xxx += "Count > 0";
+  } else if (pn->ident_ == "size") {
     cs += "Count";
-	xxx += "Count";
-  }
-  else if (pn->ident_ == "self") {
-    cs += "this";
-	xxx += "this";
-  }
-  else if (pn->ident_ == "exists") {
+    xxx += "Count";
+  } else if (pn->ident_ == "self") {
+    cs += "self";
+    xxx += "self";
+  } else if (pn->ident_ == "exists") {
     cs += "Exists";
-	xxx += "Exists";
-  }
-  else if (pn->ident_ == "excludes") {
-    //cs = "!" + cs + "Exists";
-	excludes = true;
-	xxx = "!" + xxx + "Exists";
-  }
-  else if (pn->ident_ == "Calendar") {
+    xxx += "Exists";
+  } else if (pn->ident_ == "excludes") {
+    // cs = "!" + cs + "Exists";
+    excludes = true;
+    xxx = "!" + xxx + "Exists";
+  } else if (pn->ident_ == "Calendar") {
     cs += "DateTime.Today";
-	xxx += "DateTime.Today";
-  }
-  else if (pn->ident_ == "YEAR") {
+    xxx += "DateTime.Today";
+  } else if (pn->ident_ == "YEAR") {
     cs += "Year";
-	xxx += "Year";
-  }
-  else if (pn->ident_ == "MONTH") {
+    xxx += "Year";
+  } else if (pn->ident_ == "MONTH") {
     cs += "Month";
-	xxx += "Month";
-  }
-  else if (pn->ident_ == "DAY") {
+    xxx += "Month";
+  } else if (pn->ident_ == "DAY") {
     cs += "Day";
-	xxx += "Day";
-  }
-  else {
+    xxx += "Day";
+  } else {
     cs += pn->ident_;
-	xxx += pn->ident_;
+    xxx += pn->ident_;
   }
-  std::cerr << __func__ << ": " << pn->ident_ << std::endl;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << pn->ident_ << std::endl;
 }
 
 void Skeleton::visitNoQual(NoQual *no_qual) { /* Code For NoQual Goes Here */
@@ -627,18 +628,18 @@ void Skeleton::visitNoTE(NoTE *no_te) { /* Code For NoTE Goes Here */
 }
 
 void Skeleton::visitAtPre(AtPre *at_pre) {
-	/* Code For AtPre Goes Here */
-	object[number].atPre = true;
-	j[number]["atPre"] = true;
-	
-	std::size_t found;
-	std::size_t temp = xxx.find("this");
-	while (temp!=std::string::npos) {
-		found = temp;
-		temp = xxx.find("this", found+1);
-	}
-	
-	xxx.replace(found, 4, "pre");
+  /* Code For AtPre Goes Here */
+  object[number].atPre = true;
+  j[number]["atPre"] = true;
+
+  std::size_t found;
+  std::size_t temp = xxx.find("self");
+  while (temp != std::string::npos) {
+    found = temp;
+    temp = xxx.find("self", found + 1);
+  }
+
+  xxx.replace(found, 4, "pre");
 }
 
 void Skeleton::visitNoPCP(NoPCP *no_pcp) { /* Code For NoPCP Goes Here */
@@ -697,22 +698,22 @@ void Skeleton::visitPCPNoDeclNoParam(PCPNoDeclNoParam *pcp_no_decl_no_param) {
 
 void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
   /* Code For PCPConcrete Goes Here */
- 
+
   cs += "(";
   xxx += "(";
-  
+
   if (excludes) {
-	cs += "p => p != ";
-	xxx += "p => p != ";
-	pcp_concrete->expression_->accept(this);
+    cs += "p => p != ";
+    xxx += "p => p != ";
+    pcp_concrete->expression_->accept(this);
+  } else {
+    pcp_concrete->expression_->accept(this);
+    if (DEBUG_PRINT)
+      std::cerr << "'|'" << std::endl;
+    cs += " => ";
+    xxx += " => ";
   }
-  else {
-	pcp_concrete->expression_->accept(this);
-	std::cerr << "'|'" << std::endl;
-	cs += " => ";
-	xxx += " => ";
-  }
-  
+
   pcp_concrete->listpcphelper_->accept(this);
   cs += ")";
   xxx += ")";
@@ -898,13 +899,15 @@ void Skeleton::visitUNot(UNot *u_not) { /* Code For UNot Goes Here */
 }
 
 void Skeleton::visitPDot(PDot *p_dot) { /* Code For PDot Goes Here */
-  std::cerr << "'.'" << std::endl;
+  if (DEBUG_PRINT)
+    std::cerr << "'.'" << std::endl;
   cs += ".";
   xxx += ".";
 }
 
 void Skeleton::visitPArrow(PArrow *p_arrow) { /* Code For PArrow Goes Here */
-  std::cerr << "'->'" << std::endl;
+  if (DEBUG_PRINT)
+    std::cerr << "'->'" << std::endl;
   cs += ".";
   xxx += ".";
 }

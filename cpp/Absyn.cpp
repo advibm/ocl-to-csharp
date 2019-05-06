@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <string>
 #include <vector>
-#include "Absyn.H"
+#include "Absyn.h"
 
 /********************   OCLf    ********************/
 OCLf::OCLf(ListOCLPackage *p1)
