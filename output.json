@@ -1,6 +1,60 @@
 {
-    "AfterCode": "duration>=0",
+    "AfterCode": "self.alter>=0",
+    "BeforeCode": "self.alter>=0",
+    "ContextName": "Person",
+    "FunctionName": null
+}
+{
+    "AfterCode": "self.eltern.All(e => e.alter>self.alter)",
+    "BeforeCode": "self.eltern.All(e => e.alter>self.alter)",
+    "ContextName": "Person",
+    "FunctionName": null
+}
+{
+    "AfterCode": "self.alter==pre.alter+1",
     "BeforeCode": "true",
-    "ContextName": "Operation",
-    "FunctionName": "SetTask"
+    "ContextName": "Person",
+    "FunctionName": "hatGeburtstag"
+}
+{
+    "AfterCode": "self.eltern.Count<=2",
+    "BeforeCode": "self.eltern.Count<=2",
+    "ContextName": "Person",
+    "FunctionName": null
+}
+{
+    "AfterCode": "self.kinder.Count > 0 && self.kinder.Count>pre.kinder.Count",
+    "BeforeCode": "true",
+    "ContextName": "Person",
+    "FunctionName": "bekommtKind"
+}
+{
+    "AfterCode": "if (self.alter<18) {self.autos.isEmpty}",
+    "BeforeCode": "if (self.alter<18) {self.autos.isEmpty}",
+    "ContextName": "Person",
+    "FunctionName": null
+}
+{
+    "AfterCode": "self.erstzulassung>=self.baujahr",
+    "BeforeCode": "self.erstzulassung>=self.baujahr",
+    "ContextName": "Auto",
+    "FunctionName": null
+}
+{
+    "AfterCode": "if (self.autos.Count > 0) {self.autos.Exists(a => DateTime.Today.Year-a.baujahr<self.alter)}",
+    "BeforeCode": "if (self.autos.Count > 0) {self.autos.Exists(a => DateTime.Today.Year-a.baujahr<self.alter)}",
+    "ContextName": "Person",
+    "FunctionName": null
+}
+{
+    "AfterCode": "!self.eltern.Exists(p => p != self)",
+    "BeforeCode": "!self.eltern.Exists(p => p != self)",
+    "ContextName": "Person",
+    "FunctionName": null
+}
+{
+    "AfterCode": "Person.allInstances.Exists(p => p.autos.Count>0)",
+    "BeforeCode": "Person.allInstances.Exists(p => p.autos.Count>0)",
+    "ContextName": "Person",
+    "FunctionName": null
 }
