@@ -1,84 +1,48 @@
 {
-    "AfterCode": "this.alter>=0",
-    "BeforeCode": "this.alter>=0",
-    "ContextName": "Person",
-    "FunctionName": ""
+    "after": true,
+    "before": "duration>=0",
+    "class": "Operation",
+    "name": "DurationNotNegativ",
+    "operation": "SetTask()",
+    "type": "pre"
 }
 {
-    "AfterCode": "this.eltern.All(e => e.alter>this.alter)",
-    "BeforeCode": "this.eltern.All(e => e.alter>this.alter)",
-    "ContextName": "Person",
-    "FunctionName": ""
+    "after": true,
+    "before": "startTime>=predecessor.EndTime",
+    "class": "Operation",
+    "name": "OverlappingProdTime",
+    "operation": "SetTask()",
+    "type": "pre"
 }
 {
-    "AfterCode": "this.alter==pre.alter+1",
-    "BeforeCode": true,
-    "ContextName": "Person",
-    "FunctionName": "hatGeburtstag()"
+    "after": true,
+    "before": "this.Workload.All(v => v.StartTime<op.Starttime && v.EndTime>op.Starttime)",
+    "class": "Machine",
+    "name": "StartTimeCollision",
+    "operation": "SetEntry(Operation op)",
+    "type": "pre"
 }
 {
-    "AfterCode": "this.eltern.Count()<=2",
-    "BeforeCode": "this.eltern.Count()<=2",
-    "ContextName": "Person",
-    "FunctionName": "hatGeburtstag()"
+    "after": true,
+    "before": "this.Workload.All(v => v.StartTime<op.EndTime && v.EndTime>op.EndTtime)",
+    "class": "Machine",
+    "name": "EndTimeCollision",
+    "operation": "SetEntry(Operation op)",
+    "type": "pre"
 }
 {
-    "AfterCode": "this.kinder.Count > 0() && this.kinder.Count()>pre.kinder.Count()",
-    "BeforeCode": true,
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
+    "after": "this.Capacity>=this.Workload.Duration.sum()",
+    "before": true,
+    "class": "Machine",
+    "name": "CapacityCheck",
+    "operation": "SetEntry()",
+    "type": "post"
 }
 {
-    "AfterCode": "if (this.alter<18) {this.autos.isEmpty()}",
-    "BeforeCode": "if (this.alter<18) {this.autos.isEmpty()}",
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": "this.erstzulassung>=this.baujahr",
-    "BeforeCode": "this.erstzulassung>=this.baujahr",
-    "ContextName": "Auto",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": "if (this.autos.Count > 0()) {this.autos.Exists(a => DateTime.Today.Year-a.baujahr<this.alter)}",
-    "BeforeCode": "if (this.autos.Count > 0()) {this.autos.Exists(a => DateTime.Today.Year-a.baujahr<this.alter)}",
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": "!this.eltern.Exists(p => p != this)",
-    "BeforeCode": "!this.eltern.Exists(p => p != this)",
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": "Person.allInstances().Exists(p => p.autos.Count()>0)",
-    "BeforeCode": "Person.allInstances().Exists(p => p.autos.Count()>0)",
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": "this.childs.All(e => e.age<this.age-7)",
-    "BeforeCode": "this.childs.All(e => e.age<this.age-7)",
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": "this.childs.All(e1,e2 => if (e1!=e2) {e1.name!=e2.name})",
-    "BeforeCode": "this.childs.All(e1,e2 => if (e1!=e2) {e1.name!=e2.name})",
-    "ContextName": "Person",
-    "FunctionName": "bekommtKind()"
-}
-{
-    "AfterCode": true,
-    "BeforeCode": "this.isConfirmed()==false && d>e+0.500000",
-    "ContextName": "Meeting",
-    "FunctionName": "shift(int d, double e)"
-}
-{
-    "AfterCode": "this.workschedule.End>ende",
-    "BeforeCode": true,
-    "ContextName": "Maschine",
-    "FunctionName": "FinishWork(int ende)"
+    "after": "this.ProductionTime>=this.Operation.Duration.sum()",
+    "before": true,
+    "class": "Planner",
+    "name": "CheckProductionTime",
+    "operation": "Plan()",
+    "type": "post"
 }

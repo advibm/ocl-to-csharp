@@ -94,14 +94,14 @@ void Skeleton::visitOCLf(OCLf *oc_lf) {
   std::ofstream o("output.json");
   for (int i = 0; i < number; i++) {
 
-    json obj;
+    /*json obj;
     obj["ContextName"] = j[i]["class"];
     obj["FunctionName"] = j[i]["operation"];
     obj["BeforeCode"] = j[i]["before"];
-    obj["AfterCode"] = j[i]["after"];
+    obj["AfterCode"] = j[i]["after"];*/
 
-    std::cout << std::setw(4) << obj << std::endl;
-    o << std::setw(4) << obj << std::endl;
+    std::cout << std::setw(4) << j[i] << std::endl;
+    o << std::setw(4) << j[i] << std::endl;
   }
 }
 
@@ -160,7 +160,8 @@ void Skeleton::visitCBDefNamed(CBDefNamed *cb_def_named) {
   /* Code For CBDefNamed Goes Here */
 
   visitIdent(cb_def_named->ident_);
-  std::cerr << __func__ << ": " << cb_def_named->ident_ << std::endl;
+  if (DEBUG_PRINT)
+	std::cerr << __func__ << ": " << cb_def_named->ident_ << std::endl;
   cb_def_named->listletexpression_->accept(this);
 }
 
@@ -177,6 +178,7 @@ void Skeleton::visitCBNamed(CBNamed *cb_named) {
   visitIdent(cb_named->ident_);
   if (DEBUG_PRINT)
 	std::cerr << __func__ << ": " << cb_named->ident_ << std::endl;
+  j[number]["name"] = cb_named->ident_;
   cb_named->oclexpression_->accept(this);
 }
 
