@@ -1,11 +1,9 @@
 package Rules 
-
-	context Person inv : self.childs->forAll( e | e.age < self.age - 7)
-
-	context Person inv i3 : self.childs->forAll( e1,e2 : Person | e1 <> e2 implies e1.name <> e2.name)
-	
-		context Person inv i3 : self.childs->forAll( e1,e2, e3 : Person | e1 <> e2 implies e1.name <> e2.name)
-
-	context Meeting::shift(d:Integer, e:Double) pre: self.isConfirmed() = false and d>e+0.5
+	context Person inv:
+		if isUnemployed then
+			income < 100
+		else
+			income >= 100
+		endif
 	
 endpackage

@@ -428,10 +428,16 @@ void Skeleton::visitLEType(LEType *le_type) {
 
 void Skeleton::visitIfExp(IfExp *if_exp) {
   /* Code For IfExp Goes Here */
-
+  
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << true << std::endl;
+  xxx += "if (";
   if_exp->expression_1->accept(this);
+  xxx += ") {";
   if_exp->expression_2->accept(this);
+  xxx += "} else {";
   if_exp->expression_3->accept(this);
+  xxx += "}";
 }
 
 void Skeleton::visitEOpImpl(EOpImpl *e_op_impl) {
@@ -614,6 +620,9 @@ void Skeleton::visitPN(PN *pn) {
   }
   else if (pn->ident_ == "mod") {
 	xxx += " % ";
+  }
+  else if (pn->ident_ == "sum") {
+	xxx += "Sum";
   }
   else {
 	xxx += pn->ident_;
@@ -860,49 +869,51 @@ void Skeleton::visitCollection(Collection *collection) {
 }
 
 void Skeleton::visitEEq(EEq *e_eq) { /* Code For EEq Goes Here */
-  xxx += "==";
+  xxx += " == ";
 }
 
 void Skeleton::visitENEq(ENEq *en_eq) { /* Code For ENEq Goes Here */
-  xxx += "!=";
+  xxx += " != ";
 }
 
 void Skeleton::visitRGT(RGT *rgt) { /* Code For RGT Goes Here */
-  xxx += ">";
+  xxx += " > ";
 }
 
 void Skeleton::visitRGTE(RGTE *rgte) { /* Code For RGTE Goes Here */
-  xxx += ">=";
+  xxx += " >= ";
 }
 
 void Skeleton::visitRLT(RLT *rlt) { /* Code For RLT Goes Here */
-  xxx += "<";
+  xxx += " < ";
 }
 
 void Skeleton::visitRLTE(RLTE *rlte) { /* Code For RLTE Goes Here */
-  xxx += "<=";
+  xxx += " <= ";
 }
 
 void Skeleton::visitAAdd(AAdd *a_add) { /* Code For AAdd Goes Here */
-  xxx += "+";
+  xxx += " + ";
 }
 
 void Skeleton::visitASub(ASub *a_sub) { /* Code For ASub Goes Here */
-  xxx += "-";
+  xxx += " - ";
 }
 
 void Skeleton::visitMMult(MMult *m_mult) { /* Code For MMult Goes Here */
-  xxx += "*";
+  xxx += " * ";
 }
 
 void Skeleton::visitMDiv(MDiv *m_div) { /* Code For MDiv Goes Here */
-  xxx += "/";
+  xxx += " / ";
 }
 
 void Skeleton::visitUMin(UMin *u_min) { /* Code For UMin Goes Here */
+  xxx += "-";
 }
 
 void Skeleton::visitUNot(UNot *u_not) { /* Code For UNot Goes Here */
+  xxx += "!";
 }
 
 void Skeleton::visitPDot(PDot *p_dot) { /* Code For PDot Goes Here */
@@ -1001,12 +1012,14 @@ void Skeleton::visitInteger(Integer x) { /* Code for Integer Goes Here */
 }
 
 void Skeleton::visitChar(Char x) { /* Code for Char Goes Here */
+  xxx += x;
 }
 
 void Skeleton::visitDouble(Double x) { /* Code for Double Goes Here */
 }
 
 void Skeleton::visitString(String x) { /* Code for String Goes Here */
+  xxx += x;
 }
 
 void Skeleton::visitIdent(Ident x) { /* Code for numberent Goes Here */
