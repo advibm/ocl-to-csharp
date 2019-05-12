@@ -82,7 +82,7 @@ void Skeleton::visitPostfixOperator(PostfixOperator *t) {}   // abstract class
   std::string fparameter = "";
   bool hasParameter = false;
   bool hasExcludes = false;
-  
+  bool isOperation = false;
   json j[99];
 
 void Skeleton::visitOCLf(OCLf *oc_lf) {
@@ -234,10 +234,12 @@ void Skeleton::visitOpC(OpC *op_c) {
   op_c->operationname_->accept(this);
   
   op += "(";
+  isOperation = true;
   op_c->listformalparameter_->accept(this);
   if (hasParameter) {
 	op.pop_back(); op.pop_back();
   }
+  isOperation = false;
   op += ")";
 }
 
@@ -717,8 +719,9 @@ void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
   if (hasExcludes) {
 	xxx += "p => p != ";
   }
-  
+  xxx += "(";
   pcp_concrete->expression_->accept(this);
+  xxx += ")";
   
   pcp_concrete->listpcphelper_->accept(this);
   
@@ -727,10 +730,12 @@ void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
 
 void Skeleton::visitPCPComma(PCPComma *pcp_comma) {
   /* Code For PCPComma Goes Here */
+  xxx.pop_back();
   if (DEBUG_PRINT)
 	std::cerr << __func__ << ": " << "','" << std::endl;
   xxx += ",";
   pcp_comma->expression_->accept(this);
+  xxx += ")";
 }
 
 void Skeleton::visitPCPColon(PCPColon *pcp_colon) {
@@ -782,9 +787,11 @@ void Skeleton::visitLitBoolFalse(LitBoolFalse *lit_bool_false) {
 void Skeleton::visitSTSpec(STSpec *st_spec) {
   /* Code For STSpec Goes Here */
 
-  st_spec->pathname_->accept(this);
-  op += xxx + " " + fparameter + ", ";
-  xxx = "";
+  if (isOperation) {
+	st_spec->pathname_->accept(this);
+	op += xxx + " " + fparameter + ", ";
+	xxx = "";
+  }
 }
 
 void Skeleton::visitLCollection(LCollection *l_collection) {

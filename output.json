@@ -1,48 +1,30 @@
 {
-    "after": true,
-    "before": "duration>=0",
-    "class": "Operation",
-    "name": "DurationNotNegativ",
-    "operation": "SetTask()",
-    "type": "pre"
+    "after": "this.childs.All((e) => e.age<this.age-7)",
+    "before": "this.childs.All((e) => e.age<this.age-7)",
+    "class": "Person",
+    "operation": "",
+    "type": "inv"
+}
+{
+    "after": "this.childs.All((e1,e2) => if (e1!=e2) {e1.name!=e2.name})",
+    "before": "this.childs.All((e1,e2) => if (e1!=e2) {e1.name!=e2.name})",
+    "class": "Person",
+    "name": "i3",
+    "operation": "",
+    "type": "inv"
+}
+{
+    "after": "this.childs.All((e1,e2,e3) => if (e1!=e2) {e1.name!=e2.name})",
+    "before": "this.childs.All((e1,e2,e3) => if (e1!=e2) {e1.name!=e2.name})",
+    "class": "Person",
+    "name": "i3",
+    "operation": "",
+    "type": "inv"
 }
 {
     "after": true,
-    "before": "startTime>=predecessor.EndTime",
-    "class": "Operation",
-    "name": "OverlappingProdTime",
-    "operation": "SetTask()",
+    "before": "this.isConfirmed()==false && d>e+0.500000",
+    "class": "Meeting",
+    "operation": "shift(int d, double e)",
     "type": "pre"
-}
-{
-    "after": true,
-    "before": "this.Workload.All(v => v.StartTime<op.Starttime && v.EndTime>op.Starttime)",
-    "class": "Machine",
-    "name": "StartTimeCollision",
-    "operation": "SetEntry(Operation op)",
-    "type": "pre"
-}
-{
-    "after": true,
-    "before": "this.Workload.All(v => v.StartTime<op.EndTime && v.EndTime>op.EndTtime)",
-    "class": "Machine",
-    "name": "EndTimeCollision",
-    "operation": "SetEntry(Operation op)",
-    "type": "pre"
-}
-{
-    "after": "this.Capacity>=this.Workload.Duration.sum()",
-    "before": true,
-    "class": "Machine",
-    "name": "CapacityCheck",
-    "operation": "SetEntry()",
-    "type": "post"
-}
-{
-    "after": "this.ProductionTime>=this.Operation.Duration.sum()",
-    "before": true,
-    "class": "Planner",
-    "name": "CheckProductionTime",
-    "operation": "Plan()",
-    "type": "post"
 }
