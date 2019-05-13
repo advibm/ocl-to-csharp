@@ -1,6 +1,6 @@
 package Rules 
 	context Person inv:
-		if isUnemployed then
+		if isUnemployed.substring(self) then
 			income < 100
 		else
 			income >= 100

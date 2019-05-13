@@ -4,6 +4,8 @@
 
 #include "Absyn.h"
 #include "json.hpp"
+#include <algorithm>
+#include <string> 
 
 class Skeleton : public Visitor {
 private:

@@ -11,7 +11,7 @@
 using json = nlohmann::json;
 using namespace std;
 
-const static bool DEBUG_PRINT = true;
+const static bool DEBUG_PRINT = false;
 
 void Skeleton::process(Visitable *v) { v->accept(this); }
 
@@ -383,7 +383,8 @@ void Skeleton::visitRT(RT *rt) {
 
 void Skeleton::visitOCLExp(OCLExp *ocl_exp) {
   /* Code For OCLExp Goes Here */
-
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << true << std::endl;
   ocl_exp->expression_->accept(this);
 }
 
@@ -574,55 +575,76 @@ void Skeleton::visitPN(PN *pn) {
   /* Code For PN Goes Here */
 
   visitIdent(pn->ident_);
-  if (pn->ident_ == "forAll") {
+  std::string temp = pn->ident_; 
+  std::transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
+  
+  if (temp == "forall") {
 	xxx += "All";
   }
-  else if (pn->ident_ == "notEmpty") {
+  else if (temp == "notempty") {
 	xxx += "Count > 0";
   }
-  else if (pn->ident_ == "size") {
+  else if (temp == "size") {
 	xxx += "Count";
   }
-  else if (pn->ident_ == "self") {
+  else if (temp == "count") {
+	xxx += "Count";
+  }
+  else if (temp == "self") {
 	xxx += "this";
   }
-  else if (pn->ident_ == "exists") {
+  else if (temp == "exists") {
 	xxx += "Exists";
   }
-  else if (pn->ident_ == "excludes") {
+  else if (temp == "includes") {
+	xxx += "Exists";
+  }
+  else if (temp == "excludes") {
     //cs = "!" + cs + "Exists";
 	hasExcludes = true;
 	xxx = "!" + xxx + "Exists";
   }
-  else if (pn->ident_ == "Calendar") {
+  else if (temp == "calendar") {
 	xxx += "DateTime.Today";
   }
-  else if (pn->ident_ == "YEAR") {
+  else if (temp == "year") {
 	xxx += "Year";
   }
-  else if (pn->ident_ == "MONTH") {
+  else if (temp == "month") {
 	xxx += "Month";
   }
-  else if (pn->ident_ == "DAY") {
+  else if (temp == "day") {
 	xxx += "Day";
   }
-  else if (pn->ident_ == "Integer") {
+  else if (temp == "integer") {
 	xxx += "int";
   }
-  else if (pn->ident_ == "Double") {
+  else if (temp == "double") {
 	xxx += "double";
   }
-  else if (pn->ident_ == "abs") {
+  else if (temp == "abs") {
 	xxx += "Abs";
   }
-  else if (pn->ident_ == "div") {
+  else if (temp == "div") {
 	xxx += " / ";
   }
-  else if (pn->ident_ == "mod") {
+  else if (temp == "mod") {
 	xxx += " % ";
   }
-  else if (pn->ident_ == "sum") {
+  else if (temp == "sum") {
 	xxx += "Sum";
+  }
+  else if (temp == "concat") {
+	xxx += "Concat";
+  }
+  else if (temp == "substring") {
+	xxx += "Substring";
+  }
+  else if (temp == "toupper") {
+	xxx += "toUpper";
+  }
+  else if (temp == "tolower") {
+	xxx += "toLower";
   }
   else {
 	xxx += pn->ident_;
@@ -728,9 +750,8 @@ void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
   if (hasExcludes) {
 	xxx += "p => p != ";
   }
-  xxx += "(";
+
   pcp_concrete->expression_->accept(this);
-  xxx += ")";
   
   pcp_concrete->listpcphelper_->accept(this);
   
@@ -739,12 +760,10 @@ void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
 
 void Skeleton::visitPCPComma(PCPComma *pcp_comma) {
   /* Code For PCPComma Goes Here */
-  xxx.pop_back();
   if (DEBUG_PRINT)
 	std::cerr << __func__ << ": " << "','" << std::endl;
   xxx += ",";
   pcp_comma->expression_->accept(this);
-  xxx += ")";
 }
 
 void Skeleton::visitPCPColon(PCPColon *pcp_colon) {
@@ -852,6 +871,7 @@ void Skeleton::visitLOr(LOr *l_or) { /* Code For LOr Goes Here */
 }
 
 void Skeleton::visitLXor(LXor *l_xor) { /* Code For LXor Goes Here */
+  xxx += " ^ ";
 }
 
 void Skeleton::visitSet(Set *set) { /* Code For Set Goes Here */
