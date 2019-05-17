@@ -1,5 +1,6 @@
 {
     "after": true,
+    "atPre": false,
     "before": "duration >= 0",
     "class": "Operation",
     "name": "DurationNotNegativ",
@@ -8,6 +9,7 @@
 }
 {
     "after": true,
+    "atPre": false,
     "before": "startTime >= predecessor.EndTime",
     "class": "Operation",
     "name": "OverlappingProdTime",
@@ -16,6 +18,7 @@
 }
 {
     "after": true,
+    "atPre": false,
     "before": "this.Workload.All(v => v.StartTime < op.Starttime && v.EndTime > op.Starttime)",
     "class": "Machine",
     "name": "StartTimeCollision",
@@ -24,6 +27,7 @@
 }
 {
     "after": true,
+    "atPre": false,
     "before": "this.Workload.All(v => v.StartTime < op.EndTime && v.EndTime > op.EndTtime)",
     "class": "Machine",
     "name": "EndTimeCollision",
@@ -32,6 +36,7 @@
 }
 {
     "after": "this.Capacity >= this.Workload.Duration.Sum()",
+    "atPre": false,
     "before": true,
     "class": "Machine",
     "name": "CapacityCheck",
@@ -40,6 +45,7 @@
 }
 {
     "after": "this.ProductionTime >= this.Operation.Duration.Sum()",
+    "atPre": false,
     "before": true,
     "class": "Planner",
     "name": "CheckProductionTime",

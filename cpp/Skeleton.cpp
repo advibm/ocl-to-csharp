@@ -669,6 +669,8 @@ void Skeleton::visitQuals(Quals *quals) {
 }
 
 void Skeleton::visitNoTE(NoTE *no_te) { /* Code For NoTE Goes Here */
+  object[number].atPre = false;
+  j[number]["atPre"] = false;
 }
 
 void Skeleton::visitAtPre(AtPre *at_pre) {
