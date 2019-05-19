@@ -14,27 +14,27 @@
 }
 {
     "AfterCode": "true",
-    "BeforeCode": "GetValue(self,\"Workload\").All(v => GetValue(v,\"StartTime\") < GetValue(op,\"Starttime\") && GetValue(v,\"EndTime\") > GetValue(op,\"Starttime\"))",
+    "BeforeCode": "GetValue(self,\"Workload\").CastToList().All(v => GetValue(v,\"StartTime\") < GetValue(op,\"Starttime\") && GetValue(v,\"EndTime\") > GetValue(op,\"Starttime\"))",
     "ConstraintName": "StartTimeCollision",
     "ContextName": "Machine",
     "FunctionName": "SetEntry"
 }
 {
     "AfterCode": "true",
-    "BeforeCode": "GetValue(self,\"Workload\").All(v => GetValue(v,\"StartTime\") < GetValue(op,\"EndTime\") && GetValue(v,\"EndTime\") > GetValue(op,\"EndTtime\"))",
+    "BeforeCode": "GetValue(self,\"Workload\").CastToList().All(v => GetValue(v,\"StartTime\") < GetValue(op,\"EndTime\") && GetValue(v,\"EndTime\") > GetValue(op,\"EndTtime\"))",
     "ConstraintName": "EndTimeCollision",
     "ContextName": "Machine",
     "FunctionName": "SetEntry"
 }
 {
-    "AfterCode": "GetValue(self,\"Capacity\") >= GetValue(self,\"Workload\").Duration.Sum()",
+    "AfterCode": "Cast(GetValue(self,\"Capacity\") >= GetValue(self,\"Workload\").Duration, dynamic).Sum()",
     "BeforeCode": "true",
     "ConstraintName": "CapacityCheck",
     "ContextName": "Machine",
     "FunctionName": "SetEntry"
 }
 {
-    "AfterCode": "GetValue(self,\"ProductionTime\") >= GetValue(self,\"Operation\").Duration.Sum()",
+    "AfterCode": "Cast(GetValue(self,\"ProductionTime\") >= GetValue(self,\"Operation\").Duration, dynamic).Sum()",
     "BeforeCode": "true",
     "ConstraintName": "CheckProductionTime",
     "ContextName": "Planner",

@@ -583,7 +583,16 @@ void Skeleton::visitPN(PN *pn) {
   std::transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
 
   if (temp == "forall") {
-    xxx += "All";
+    // xxx += "CastAll";
+    xxx = "((List<dynamic>) (" + xxx.substr(0, xxx.length() - 1) + ")).All";
+    // xxx = "((" + xxx.substr(0, xxx.length() - 1) + ") as List<dynamic>).All";
+    //xxx = "Cast(" + xxx.substr(0, xxx.length() - 1) + ", dynamic).All";
+  } else if (temp == "sum") {
+    xxx = "((List<int>) (" + xxx.substr(0, xxx.length() - 1) + ")).Sum";
+  } else if (temp == "collect") {
+    // xxx += "CastToList().Select";
+    xxx = "((List<dynamic>) (" + xxx.substr(0, xxx.length() - 1) + ")).Select";
+    // xxx = "((List<dynamic>) (" + xxx.substr(0, xxx.length() - 1) + ")).Select";
   } else if (temp == "notempty") {
     xxx += "Count > 0";
   } else if (temp == "size") {
@@ -636,18 +645,19 @@ void Skeleton::visitPN(PN *pn) {
     //   localVarNext = false;
     //   localVars.push_back(pn->ident_);
     // }
+    idents.push_back(pn->ident_);
 
     // if (std::any_of(localVars.begin(), localVars.end(), [&pn](auto &&s) { return s == pn->ident_; })) {
     //   withPrivate = false;
     // }
-
 
     if (withPrivate) {
       if (rootObj.empty()) {
         rootObj = pn->ident_;
       } else {
         withPrivate = false;
-        xxx += "GetValue(" + rootObj + ",\"" + pn->ident_ + "\")";
+        // xxx += "GetValue(" + rootObj + ",\"" + pn->ident_ + "\")";
+        xxx += rootObj + ".GetValue(\"" + pn->ident_ + "\")";
         rootObj = "";
       }
     } else
