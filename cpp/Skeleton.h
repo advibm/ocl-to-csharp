@@ -6,14 +6,20 @@
 #include "json.hpp"
 #include <algorithm>
 #include <string> 
+#include <vector> 
 
 class Skeleton : public Visitor {
 private:
   bool hasPre = false;
   bool hasPost = false;
   bool isInv = false;
+  bool withPrivate = false;
+  std::string rootObj = "";
 	
   std::string cs = "";
+
+  // bool localVarNext = false;
+  // std::vector<std::string> localVars;
   
 public:
   void process(Visitable *v);

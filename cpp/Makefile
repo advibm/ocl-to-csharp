@@ -1,5 +1,8 @@
-CC=g++
-CCFLAGS=-g -W -Wall
+CXX=g++
+CXXFLAGS=-g -W -Wall
+
+#CXX=i686-w64-mingw32-g++
+#CXXFLAGS=-s -static -O2 -W -Wall
 
 FLEX=flex
 FLEX_OPTS=-POCL
@@ -20,14 +23,14 @@ distclean: clean
 	rm -f Absyn.cpp Absyn.h Test.cpp Parser.cpp Parser.h Lexer.cpp Skeleton.cpp Skeleton.h Printer.cpp Printer.h Makefile OCL.l OCL.y OCL.tex 
 
 conv: ${OBJS} Skeleton.o main.o
-	${CC} ${CCFLAGS} $^ -o $@
+	${CXX} ${CXXFLAGS} $^ -o $@
 
 TestOCL: ${OBJS} Test.o
 	@echo "Linking TestOCL..."
-	${CC} ${CCFLAGS} ${OBJS} Test.o -o TestOCL
+	${CXX} ${CXXFLAGS} ${OBJS} Test.o -o TestOCL
 
 Absyn.o: Absyn.cpp Absyn.h
-	${CC} ${CCFLAGS} -c Absyn.cpp
+	${CXX} ${CXXFLAGS} -c Absyn.cpp
 
 Lexer.cpp: OCL.l
 	${FLEX} -oLexer.cpp OCL.l
@@ -36,16 +39,16 @@ Parser.cpp: OCL.y
 	${BISON} OCL.y -o Parser.cpp
 
 Lexer.o: Lexer.cpp Parser.h
-	${CC} ${CCFLAGS} -c Lexer.cpp 
+	${CXX} ${CXXFLAGS} -c Lexer.cpp 
 
 Parser.o: Parser.cpp Absyn.h
-	${CC} ${CCFLAGS} -c Parser.cpp
+	${CXX} ${CXXFLAGS} -c Parser.cpp
 
 Printer.o: Printer.cpp Printer.h Absyn.h
-	${CC} ${CCFLAGS} -c Printer.cpp
+	${CXX} ${CXXFLAGS} -c Printer.cpp
 
 Skeleton.o: Skeleton.cpp Skeleton.h Absyn.h json.hpp
-	${CC} ${CCFLAGS} -Wno-unused-parameter -c Skeleton.cpp
+	${CXX} ${CXXFLAGS} -Wno-unused-parameter -c Skeleton.cpp
 
 Test.o: Test.cpp Parser.h Printer.h Absyn.h
-	${CC} ${CCFLAGS} -c Test.cpp
+	${CXX} ${CXXFLAGS} -c Test.cpp

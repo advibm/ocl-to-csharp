@@ -1,6 +1,6 @@
-#line 1 "Lexer.C"
+#line 1 "Lexer.cpp"
 
-#line 3 "Lexer.C"
+#line 3 "Lexer.cpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -568,9 +568,9 @@ static void YY_BUFFER_RESET(void)
     YY_PARSED_STRING[x] = 0;
 }
 
-#line 571 "Lexer.C"
+#line 571 "Lexer.cpp"
 
-#line 573 "Lexer.C"
+#line 573 "Lexer.cpp"
 
 #define INITIAL 0
 #define YYINITIAL 1
@@ -797,7 +797,7 @@ YY_DECL
 #line 27 "OCL.l"
 
 
-#line 800 "Lexer.C"
+#line 800 "Lexer.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1223,7 +1223,7 @@ YY_RULE_SETUP
 #line 103 "OCL.l"
 ECHO;
 	YY_BREAK
-#line 1226 "Lexer.C"
+#line 1226 "Lexer.cpp"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(YYINITIAL):
 case YY_STATE_EOF(COMMENT):

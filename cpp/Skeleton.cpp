@@ -15,75 +15,76 @@ const static bool DEBUG_PRINT = false;
 
 void Skeleton::process(Visitable *v) { v->accept(this); }
 
-void Skeleton::visitOCLfile(OCLfile *t) {}               // abstract class
-void Skeleton::visitOCLPackage(OCLPackage *t) {}         // abstract class
-void Skeleton::visitPackageName(PackageName *t) {}       // abstract class
-void Skeleton::visitOCLExpressions(OCLExpressions *t) {} // abstract class
-void Skeleton::visitConstrnt(Constrnt *t) {}             // abstract class
-void Skeleton::visitConstrBody(ConstrBody *t) {}         // abstract class
-void Skeleton::visitContextDeclaration(ContextDeclaration *t) {
-} // abstract class
-void Skeleton::visitClassifierContext(ClassifierContext *t) {} // abstract class
-void Skeleton::visitOperationContext(OperationContext *t) {}   // abstract class
-void Skeleton::visitStereotype(Stereotype *t) {}               // abstract class
-void Skeleton::visitOperationName(OperationName *t) {}         // abstract class
-void Skeleton::visitFormalParameter(FormalParameter *t) {}     // abstract class
-void Skeleton::visitTypeSpecifier(TypeSpecifier *t) {}         // abstract class
-void Skeleton::visitCollectionType(CollectionType *t) {}       // abstract class
-void Skeleton::visitReturnType(ReturnType *t) {}               // abstract class
-void Skeleton::visitOCLExpression(OCLExpression *t) {}         // abstract class
-void Skeleton::visitLetExpression(LetExpression *t) {}         // abstract class
-void Skeleton::visitIfExpression(IfExpression *t) {}           // abstract class
-void Skeleton::visitExpression(Expression *t) {}               // abstract class
-void Skeleton::visitMessageArg(MessageArg *t) {}               // abstract class
-void Skeleton::visitPropertyCall(PropertyCall *t) {}           // abstract class
-void Skeleton::visitPathName(PathName *t) {}                   // abstract class
-void Skeleton::visitPName(PName *t) {}                         // abstract class
-void Skeleton::visitPossQualifiers(PossQualifiers *t) {}       // abstract class
-void Skeleton::visitQualifiers(Qualifiers *t) {}               // abstract class
-void Skeleton::visitPossTimeExpression(PossTimeExpression *t) {
-} // abstract class
-void Skeleton::visitPossPropCallParam(PossPropCallParam *t) {} // abstract class
-void Skeleton::visitDeclarator(Declarator *t) {}               // abstract class
-void Skeleton::visitDeclaratorVarList(DeclaratorVarList *t) {} // abstract class
-void Skeleton::visitPropertyCallParameters(PropertyCallParameters *t) {
-} // abstract class
-void Skeleton::visitPCPHelper(PCPHelper *t) {}   // abstract class
-void Skeleton::visitOCLLiteral(OCLLiteral *t) {} // abstract class
-void Skeleton::visitSimpleTypeSpecifier(SimpleTypeSpecifier *t) {
-} // abstract class
-void Skeleton::visitLiteralCollection(LiteralCollection *t) {} // abstract class
-void Skeleton::visitCollectionItem(CollectionItem *t) {}       // abstract class
-void Skeleton::visitOCLNumber(OCLNumber *t) {}                 // abstract class
-void Skeleton::visitLogicalOperator(LogicalOperator *t) {}     // abstract class
-void Skeleton::visitCollectionKind(CollectionKind *t) {}       // abstract class
-void Skeleton::visitEqualityOperator(EqualityOperator *t) {}   // abstract class
-void Skeleton::visitRelationalOperator(RelationalOperator *t) {
-} // abstract class
-void Skeleton::visitAddOperator(AddOperator *t) {}           // abstract class
-void Skeleton::visitMultiplyOperator(MultiplyOperator *t) {} // abstract class
-void Skeleton::visitUnaryOperator(UnaryOperator *t) {}       // abstract class
-void Skeleton::visitPostfixOperator(PostfixOperator *t) {}   // abstract class
+void Skeleton::visitOCLfile(OCLfile *t) {}                                // abstract class
+void Skeleton::visitOCLPackage(OCLPackage *t) {}                          // abstract class
+void Skeleton::visitPackageName(PackageName *t) {}                        // abstract class
+void Skeleton::visitOCLExpressions(OCLExpressions *t) {}                  // abstract class
+void Skeleton::visitConstrnt(Constrnt *t) {}                              // abstract class
+void Skeleton::visitConstrBody(ConstrBody *t) {}                          // abstract class
+void Skeleton::visitContextDeclaration(ContextDeclaration *t) {}          // abstract class
+void Skeleton::visitClassifierContext(ClassifierContext *t) {}            // abstract class
+void Skeleton::visitOperationContext(OperationContext *t) {}              // abstract class
+void Skeleton::visitStereotype(Stereotype *t) {}                          // abstract class
+void Skeleton::visitOperationName(OperationName *t) {}                    // abstract class
+void Skeleton::visitFormalParameter(FormalParameter *t) {}                // abstract class
+void Skeleton::visitTypeSpecifier(TypeSpecifier *t) {}                    // abstract class
+void Skeleton::visitCollectionType(CollectionType *t) {}                  // abstract class
+void Skeleton::visitReturnType(ReturnType *t) {}                          // abstract class
+void Skeleton::visitOCLExpression(OCLExpression *t) {}                    // abstract class
+void Skeleton::visitLetExpression(LetExpression *t) {}                    // abstract class
+void Skeleton::visitIfExpression(IfExpression *t) {}                      // abstract class
+void Skeleton::visitExpression(Expression *t) {}                          // abstract class
+void Skeleton::visitMessageArg(MessageArg *t) {}                          // abstract class
+void Skeleton::visitPropertyCall(PropertyCall *t) {}                      // abstract class
+void Skeleton::visitPathName(PathName *t) {}                              // abstract class
+void Skeleton::visitPName(PName *t) {}                                    // abstract class
+void Skeleton::visitPossQualifiers(PossQualifiers *t) {}                  // abstract class
+void Skeleton::visitQualifiers(Qualifiers *t) {}                          // abstract class
+void Skeleton::visitPossTimeExpression(PossTimeExpression *t) {}          // abstract class
+void Skeleton::visitPossPropCallParam(PossPropCallParam *t) {}            // abstract class
+void Skeleton::visitDeclarator(Declarator *t) {}                          // abstract class
+void Skeleton::visitDeclaratorVarList(DeclaratorVarList *t) {}            // abstract class
+void Skeleton::visitPropertyCallParameters(PropertyCallParameters *t) {}  // abstract class
+void Skeleton::visitPCPHelper(PCPHelper *t) {}                            // abstract class
+void Skeleton::visitOCLLiteral(OCLLiteral *t) {}                          // abstract class
+void Skeleton::visitSimpleTypeSpecifier(SimpleTypeSpecifier *t) {}        // abstract class
+void Skeleton::visitLiteralCollection(LiteralCollection *t) {}            // abstract class
+void Skeleton::visitCollectionItem(CollectionItem *t) {}                  // abstract class
+void Skeleton::visitOCLNumber(OCLNumber *t) {}                            // abstract class
+void Skeleton::visitLogicalOperator(LogicalOperator *t) {}                // abstract class
+void Skeleton::visitCollectionKind(CollectionKind *t) {}                  // abstract class
+void Skeleton::visitEqualityOperator(EqualityOperator *t) {}              // abstract class
+void Skeleton::visitRelationalOperator(RelationalOperator *t) {}          // abstract class
+void Skeleton::visitAddOperator(AddOperator *t) {}                        // abstract class
+void Skeleton::visitMultiplyOperator(MultiplyOperator *t) {}              // abstract class
+void Skeleton::visitUnaryOperator(UnaryOperator *t) {}                    // abstract class
+void Skeleton::visitPostfixOperator(PostfixOperator *t) {}                // abstract class
 
-  struct Object {
-	  std::string classname;
-	  std::string operation = "";
-	  std::string type;
-	  std::string before;
-	  std::string after;
-	  bool atPre = false;
-  };
-  
-  int number;
-  Object object[99];
-  
-  std::string xxx = ""; // Expression
-  std::string op = ""; // Operation
-  std::string fparameter = "";
-  bool hasParameter = false;
-  bool hasExcludes = false;
-  bool isOperation = false;
-  json j[99];
+struct Object {
+  std::string classname;
+  std::string operation = "";
+  std::string type;
+  std::string before;
+  std::string after;
+  bool atPre = false;
+};
+
+const char Name_Constraint[] = "ConstraintName";
+const char Name_Context[] = "ContextName";
+const char Name_Operation[] = "FunctionName";
+const char Name_BeforeCode[] = "BeforeCode";
+const char Name_AfterCode[] = "AfterCode";
+
+int number;
+Object object[99];
+
+std::string xxx = "";  // Expression
+std::string op = "";   // Operation
+std::string fparameter = "";
+bool hasParameter = false;
+bool hasExcludes = false;
+bool isOperation = false;
+json j[99];
 
 void Skeleton::visitOCLf(OCLf *oc_lf) {
   /* Code For OCLf Goes Here */
@@ -95,10 +96,10 @@ void Skeleton::visitOCLf(OCLf *oc_lf) {
   for (int i = 0; i < number; i++) {
 
     /*json obj;
-    obj["ContextName"] = j[i]["class"];
-    obj["FunctionName"] = j[i]["operation"];
-    obj["BeforeCode"] = j[i]["before"];
-    obj["AfterCode"] = j[i]["after"];*/
+    obj["ContextName"] = j[i][Name_Context];
+    obj["FunctionName"] = j[i][Name_Operation];
+    obj["BeforeCode"] = j[i][Name_BeforeCode];
+    obj["AfterCode"] = j[i][Name_AfterCode];*/
 
     std::cout << std::setw(4) << j[i] << std::endl;
     o << std::setw(4) << j[i] << std::endl;
@@ -128,30 +129,31 @@ void Skeleton::visitConstr(Constr *constr) {
     std::cerr << "\n" << number << "." << std::endl;
     std::cerr << __func__ << std::endl;
   }
-  
+
   xxx = "";
   constr->contextdeclaration_->accept(this);
   constr->listconstrbody_->accept(this);
-  
-  j[number]["operation"] = op;
+
+  j[number][Name_Operation] = op;
   if (hasPre) {
     object[number].before = xxx;
-    j[number]["before"] = xxx;
+    j[number][Name_BeforeCode] = xxx;
   } else if (hasPost) {
     object[number].after = xxx;
-    j[number]["after"] = xxx;
+    j[number][Name_AfterCode] = xxx;
   } else {
     object[number].before = xxx;
     object[number].after = xxx;
 
-    j[number]["before"] = xxx;
-    j[number]["after"] = xxx;
+    j[number][Name_BeforeCode] = xxx;
+    j[number][Name_AfterCode] = xxx;
   }
-  
+
   number++;
   hasParameter = false;
   hasExcludes = false;
   hasPre = false;
+
   hasPost = false;
   isInv = false;
 }
@@ -161,7 +163,7 @@ void Skeleton::visitCBDefNamed(CBDefNamed *cb_def_named) {
 
   visitIdent(cb_def_named->ident_);
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << cb_def_named->ident_ << std::endl;
+    std::cerr << __func__ << ": " << cb_def_named->ident_ << std::endl;
   cb_def_named->listletexpression_->accept(this);
 }
 
@@ -177,8 +179,8 @@ void Skeleton::visitCBNamed(CBNamed *cb_named) {
   cb_named->stereotype_->accept(this);
   visitIdent(cb_named->ident_);
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << cb_named->ident_ << std::endl;
-  j[number]["name"] = cb_named->ident_;
+    std::cerr << __func__ << ": " << cb_named->ident_ << std::endl;
+  j[number][Name_Constraint] = cb_named->ident_;
   cb_named->oclexpression_->accept(this);
 }
 
@@ -212,9 +214,9 @@ void Skeleton::visitCC(CC *cc) {
   /* Code For CC Goes Here */
 
   visitIdent(cc->ident_);
-  
+
   object[number].classname = cc->ident_;
-  j[number]["class"] = cc->ident_;
+  j[number][Name_Context] = cc->ident_;
 
   if (DEBUG_PRINT)
     std::cerr << __func__ << ": " << cc->ident_ << std::endl;
@@ -224,23 +226,25 @@ void Skeleton::visitOpC(OpC *op_c) {
   /* Code For OpC Goes Here */
 
   visitIdent(op_c->ident_);
-  
+
   object[number].classname = op_c->ident_;
-  j[number]["class"] = op_c->ident_;
-  
+  j[number][Name_Context] = op_c->ident_;
+
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << op_c->ident_ << std::endl;
+    std::cerr << __func__ << ": " << op_c->ident_ << std::endl;
 
   op_c->operationname_->accept(this);
-  
-  op += "(";
-  isOperation = true;
+
+  // XXX Wir brauchen keine Klammern und Argumente. Alle Parameternamen kommen bereits aus C#
+  // op += "(";
+  // isOperation = true;
   op_c->listformalparameter_->accept(this);
-  if (hasParameter) {
-	op.pop_back(); op.pop_back();
-  }
-  isOperation = false;
-  op += ")";
+  // if (hasParameter) {
+  //   op.pop_back();
+  //   op.pop_back();
+  // }
+  // isOperation = false;
+  // op += ")";
 }
 
 void Skeleton::visitOpCRT(OpCRT *op_crt) {
@@ -254,50 +258,50 @@ void Skeleton::visitOpCRT(OpCRT *op_crt) {
   op_crt->returntype_->accept(this);
 }
 
-void Skeleton::visitPre(Pre *pre) { 
-	hasPre = true;
-	if (DEBUG_PRINT)
-		std::cerr << __func__ << ": " << hasPre << std::endl;
-	
-	object[number].type = "pre";
-	object[number].after = "true";
-	
-	j[number]["type"] = "pre";
-	j[number]["after"] = true;
+void Skeleton::visitPre(Pre *pre) {
+  hasPre = true;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << hasPre << std::endl;
+
+  object[number].type = "pre";
+  object[number].after = "true";
+
+  // j[number]["type"] = "pre";
+  j[number][Name_AfterCode] = "true";
 }
 
 void Skeleton::visitPost(Post *post) {
-	hasPost = true;
-	if (DEBUG_PRINT)
-		std::cerr << __func__ << ": " << hasPost << std::endl;
-	
-	object[number].type = "post";
-	object[number].before = "true";
-	
-	j[number]["type"] = "post";
-	j[number]["before"] = true;
+  hasPost = true;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << hasPost << std::endl;
+
+  object[number].type = "post";
+  object[number].before = "true";
+
+  // j[number]["type"] = "post";
+  j[number][Name_BeforeCode] = "true";
 }
 
 void Skeleton::visitInv(Inv *inv) {
-	isInv = true;
-	if (DEBUG_PRINT)
-		std::cerr << __func__ << ": " << isInv << std::endl;
-	
-	object[number].operation = "None";
-	// j[number]["operation"] = "None";
-	
-	object[number].type = "inv";
-	j[number]["type"] = "inv";
+  isInv = true;
+  if (DEBUG_PRINT)
+    std::cerr << __func__ << ": " << isInv << std::endl;
+
+  object[number].operation = "None";
+  // j[number][Name_Operation] = "None";
+
+  object[number].type = "inv";
+  // j[number]["type"] = "inv";
 }
 
 void Skeleton::visitOpName(OpName *op_name) {
   /* Code For OpName Goes Here */
 
   visitIdent(op_name->ident_);
-  
+
   op = op_name->ident_;
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << op_name->ident_ << std::endl;
+    std::cerr << __func__ << ": " << op_name->ident_ << std::endl;
 }
 
 void Skeleton::visitEq(Eq *eq) { /* Code For Eq Goes Here */
@@ -429,7 +433,7 @@ void Skeleton::visitLEType(LEType *le_type) {
 
 void Skeleton::visitIfExp(IfExp *if_exp) {
   /* Code For IfExp Goes Here */
-  
+
   if (DEBUG_PRINT)
     std::cerr << __func__ << ": " << true << std::endl;
   xxx += "if (";
@@ -500,6 +504,7 @@ void Skeleton::visitEOpUn(EOpUn *e_op_un) {
 void Skeleton::visitEExplPropCall(EExplPropCall *e_expl_prop_call) {
   /* Code For EExplPropCall Goes Here */
 
+  withPrivate = true;
   e_expl_prop_call->expression_->accept(this);
   e_expl_prop_call->postfixoperator_->accept(this);
   e_expl_prop_call->propertycall_->accept(this);
@@ -546,8 +551,7 @@ void Skeleton::visitMAExpr(MAExpr *ma_expr) {
   ma_expr->expression_->accept(this);
 }
 
-void Skeleton::visitMAUnspec(MAUnspec *ma_unspec) {
-  /* Code For MAUnspec Goes Here */
+void Skeleton::visitMAUnspec(MAUnspec *ma_unspec) { /* Code For MAUnspec Goes Here */
 }
 
 void Skeleton::visitMAUnspecTyped(MAUnspecTyped *ma_unspec_typed) {
@@ -575,79 +579,79 @@ void Skeleton::visitPN(PN *pn) {
   /* Code For PN Goes Here */
 
   visitIdent(pn->ident_);
-  std::string temp = pn->ident_; 
+  std::string temp = pn->ident_;
   std::transform(temp.begin(), temp.end(), temp.begin(), ::tolower);
-  
+
   if (temp == "forall") {
-	xxx += "All";
-  }
-  else if (temp == "notempty") {
-	xxx += "Count > 0";
-  }
-  else if (temp == "size") {
-	xxx += "Count";
-  }
-  else if (temp == "count") {
-	xxx += "Count";
-  }
-  else if (temp == "self") {
-	xxx += "this";
-  }
-  else if (temp == "exists") {
-	xxx += "Exists";
-  }
-  else if (temp == "includes") {
-	xxx += "Exists";
-  }
-  else if (temp == "excludes") {
-    //cs = "!" + cs + "Exists";
-	hasExcludes = true;
-	xxx = "!" + xxx + "Exists";
-  }
-  else if (temp == "calendar") {
-	xxx += "DateTime.Today";
-  }
-  else if (temp == "year") {
-	xxx += "Year";
-  }
-  else if (temp == "month") {
-	xxx += "Month";
-  }
-  else if (temp == "day") {
-	xxx += "Day";
-  }
-  else if (temp == "integer") {
-	xxx += "int";
-  }
-  else if (temp == "double") {
-	xxx += "double";
-  }
-  else if (temp == "abs") {
-	xxx += "Abs";
-  }
-  else if (temp == "div") {
-	xxx += " / ";
-  }
-  else if (temp == "mod") {
-	xxx += " % ";
-  }
-  else if (temp == "sum") {
-	xxx += "Sum";
-  }
-  else if (temp == "concat") {
-	xxx += "Concat";
-  }
-  else if (temp == "substring") {
-	xxx += "Substring";
-  }
-  else if (temp == "toupper") {
-	xxx += "toUpper";
-  }
-  else if (temp == "tolower") {
-	xxx += "toLower";
-  }
-  else {
-	xxx += pn->ident_;
+    xxx += "All";
+  } else if (temp == "notempty") {
+    xxx += "Count > 0";
+  } else if (temp == "size") {
+    xxx += "Count";
+  } else if (temp == "count") {
+    xxx += "Count";
+  } else if (temp == "self") {
+    withPrivate = true;
+    rootObj = "self";
+    // xxx += "this";
+  } else if (temp == "exists") {
+    xxx += "Exists";
+  } else if (temp == "includes") {
+    xxx += "Exists";
+  } else if (temp == "excludes") {
+    // cs = "!" + cs + "Exists";
+    hasExcludes = true;
+    xxx = "!" + xxx + "Exists";
+  } else if (temp == "calendar") {
+    xxx += "DateTime.Today";
+  } else if (temp == "year") {
+    xxx += "Year";
+  } else if (temp == "month") {
+    xxx += "Month";
+  } else if (temp == "day") {
+    xxx += "Day";
+  } else if (temp == "integer") {
+    xxx += "int";
+  } else if (temp == "double") {
+    xxx += "double";
+  } else if (temp == "abs") {
+    xxx += "Abs";
+  } else if (temp == "div") {
+    xxx += " / ";
+  } else if (temp == "mod") {
+    xxx += " % ";
+  } else if (temp == "sum") {
+    xxx += "Sum";
+  } else if (temp == "concat") {
+    xxx += "Concat";
+  } else if (temp == "substring") {
+    xxx += "Substring";
+  } else if (temp == "toupper") {
+    xxx += "toUpper";
+  } else if (temp == "tolower") {
+    xxx += "toLower";
+  } else {
+
+    // if (localVarNext) {
+    //   localVarNext = false;
+    //   localVars.push_back(pn->ident_);
+    // }
+
+    // if (std::any_of(localVars.begin(), localVars.end(), [&pn](auto &&s) { return s == pn->ident_; })) {
+    //   withPrivate = false;
+    // }
+
+
+    if (withPrivate) {
+      if (rootObj.empty()) {
+        rootObj = pn->ident_;
+      } else {
+        withPrivate = false;
+        xxx += "GetValue(" + rootObj + ",\"" + pn->ident_ + "\")";
+        rootObj = "";
+      }
+    } else
+      xxx += pn->ident_;
   }
   if (DEBUG_PRINT)
     std::cerr << __func__ << ": " << pn->ident_ << std::endl;
@@ -670,13 +674,13 @@ void Skeleton::visitQuals(Quals *quals) {
 
 void Skeleton::visitNoTE(NoTE *no_te) { /* Code For NoTE Goes Here */
   object[number].atPre = false;
-  j[number]["atPre"] = false;
+  // j[number]["atPre"] = false;
 }
 
 void Skeleton::visitAtPre(AtPre *at_pre) {
   /* Code For AtPre Goes Here */
   object[number].atPre = true;
-  j[number]["atPre"] = true;
+  // j[number]["atPre"] = true;
 
   std::size_t found;
   std::size_t temp = xxx.find("this");
@@ -700,7 +704,6 @@ void Skeleton::visitDecl(Decl *decl) {
   /* Code For Decl Goes Here */
 
   decl->declaratorvarlist_->accept(this);
-
 }
 
 void Skeleton::visitDeclAcc(DeclAcc *decl_acc) {
@@ -748,22 +751,23 @@ void Skeleton::visitPCPConcrete(PCPConcrete *pcp_concrete) {
   /* Code For PCPConcrete Goes Here */
 
   xxx += "(";
-  
+
   if (hasExcludes) {
-	xxx += "p => p != ";
+    xxx += "p => p != ";
   }
 
   pcp_concrete->expression_->accept(this);
-  
+
   pcp_concrete->listpcphelper_->accept(this);
-  
+
   xxx += ")";
 }
 
 void Skeleton::visitPCPComma(PCPComma *pcp_comma) {
   /* Code For PCPComma Goes Here */
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << "','" << std::endl;
+    std::cerr << __func__ << ": "
+              << "','" << std::endl;
   xxx += ",";
   pcp_comma->expression_->accept(this);
 }
@@ -779,7 +783,7 @@ void Skeleton::visitPCPIterate(PCPIterate *pcp_iterate) {
 
   visitIdent(pcp_iterate->ident_);
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << pcp_iterate->ident_ << std::endl;
+    std::cerr << __func__ << ": " << pcp_iterate->ident_ << std::endl;
   pcp_iterate->typespecifier_->accept(this);
   pcp_iterate->expression_->accept(this);
 }
@@ -787,8 +791,10 @@ void Skeleton::visitPCPIterate(PCPIterate *pcp_iterate) {
 void Skeleton::visitPCPBar(PCPBar *pcp_bar) {
   /* Code For PCPBar Goes Here */
   if (DEBUG_PRINT)
-	std::cerr << __func__ << ": " << "'|'" << std::endl;
+    std::cerr << __func__ << ": "
+              << "'|'" << std::endl;
   xxx += " => ";
+  // localVarNext = true;
   pcp_bar->expression_->accept(this);
 }
 
@@ -818,9 +824,9 @@ void Skeleton::visitSTSpec(STSpec *st_spec) {
   /* Code For STSpec Goes Here */
 
   if (isOperation) {
-	st_spec->pathname_->accept(this);
-	op += xxx + " " + fparameter + ", ";
-	xxx = "";
+    st_spec->pathname_->accept(this);
+    op += xxx + " " + fparameter + ", ";
+    xxx = "";
   }
 }
 
@@ -882,12 +888,10 @@ void Skeleton::visitSet(Set *set) { /* Code For Set Goes Here */
 void Skeleton::visitBag(Bag *bag) { /* Code For Bag Goes Here */
 }
 
-void Skeleton::visitSequence(Sequence *sequence) {
-  /* Code For Sequence Goes Here */
+void Skeleton::visitSequence(Sequence *sequence) { /* Code For Sequence Goes Here */
 }
 
-void Skeleton::visitCollection(Collection *collection) {
-  /* Code For Collection Goes Here */
+void Skeleton::visitCollection(Collection *collection) { /* Code For Collection Goes Here */
 }
 
 void Skeleton::visitEEq(EEq *e_eq) { /* Code For EEq Goes Here */
@@ -942,7 +946,8 @@ void Skeleton::visitPDot(PDot *p_dot) { /* Code For PDot Goes Here */
 
   if (DEBUG_PRINT)
     std::cerr << "'.'" << std::endl;
-  xxx += ".";
+  if (!withPrivate)
+    xxx += ".";
 }
 
 void Skeleton::visitPArrow(PArrow *p_arrow) { /* Code For PArrow Goes Here */
@@ -952,80 +957,67 @@ void Skeleton::visitPArrow(PArrow *p_arrow) { /* Code For PArrow Goes Here */
 }
 
 void Skeleton::visitListOCLPackage(ListOCLPackage *list_ocl_package) {
-  for (ListOCLPackage::iterator i = list_ocl_package->begin();
-       i != list_ocl_package->end(); ++i) {
+  for (ListOCLPackage::iterator i = list_ocl_package->begin(); i != list_ocl_package->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListConstrnt(ListConstrnt *list_constrnt) {
-  for (ListConstrnt::iterator i = list_constrnt->begin();
-       i != list_constrnt->end(); ++i) {
+  for (ListConstrnt::iterator i = list_constrnt->begin(); i != list_constrnt->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListConstrBody(ListConstrBody *list_constr_body) {
-  for (ListConstrBody::iterator i = list_constr_body->begin();
-       i != list_constr_body->end(); ++i) {
+  for (ListConstrBody::iterator i = list_constr_body->begin(); i != list_constr_body->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
-void Skeleton::visitListFormalParameter(
-    ListFormalParameter *list_formal_parameter) {
-  for (ListFormalParameter::iterator i = list_formal_parameter->begin();
-       i != list_formal_parameter->end(); ++i) {
+void Skeleton::visitListFormalParameter(ListFormalParameter *list_formal_parameter) {
+  for (ListFormalParameter::iterator i = list_formal_parameter->begin(); i != list_formal_parameter->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListLetExpression(ListLetExpression *list_let_expression) {
-  for (ListLetExpression::iterator i = list_let_expression->begin();
-       i != list_let_expression->end(); ++i) {
+  for (ListLetExpression::iterator i = list_let_expression->begin(); i != list_let_expression->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListMessageArg(ListMessageArg *list_message_arg) {
-  for (ListMessageArg::iterator i = list_message_arg->begin();
-       i != list_message_arg->end(); ++i) {
+  for (ListMessageArg::iterator i = list_message_arg->begin(); i != list_message_arg->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListPName(ListPName *list_p_name) {
-  for (ListPName::iterator i = list_p_name->begin(); i != list_p_name->end();
-       ++i) {
+  for (ListPName::iterator i = list_p_name->begin(); i != list_p_name->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListIdent(ListIdent *list_ident) {
-  for (ListIdent::iterator i = list_ident->begin(); i != list_ident->end();
-       ++i) {
+  for (ListIdent::iterator i = list_ident->begin(); i != list_ident->end(); ++i) {
     visitIdent(*i);
   }
 }
 
 void Skeleton::visitListExpression(ListExpression *list_expression) {
-  for (ListExpression::iterator i = list_expression->begin();
-       i != list_expression->end(); ++i) {
+  for (ListExpression::iterator i = list_expression->begin(); i != list_expression->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
 void Skeleton::visitListPCPHelper(ListPCPHelper *list_pcp_helper) {
-  for (ListPCPHelper::iterator i = list_pcp_helper->begin();
-       i != list_pcp_helper->end(); ++i) {
+  for (ListPCPHelper::iterator i = list_pcp_helper->begin(); i != list_pcp_helper->end(); ++i) {
     (*i)->accept(this);
   }
 }
 
-void Skeleton::visitListCollectionItem(
-    ListCollectionItem *list_collection_item) {
-  for (ListCollectionItem::iterator i = list_collection_item->begin();
-       i != list_collection_item->end(); ++i) {
+void Skeleton::visitListCollectionItem(ListCollectionItem *list_collection_item) {
+  for (ListCollectionItem::iterator i = list_collection_item->begin(); i != list_collection_item->end(); ++i) {
     (*i)->accept(this);
   }
 }

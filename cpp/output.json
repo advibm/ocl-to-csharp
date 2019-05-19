@@ -1,0 +1,42 @@
+{
+    "AfterCode": "true",
+    "BeforeCode": "duration >= 0",
+    "ConstraintName": "DurationNotNegativ",
+    "ContextName": "Operation",
+    "FunctionName": "SetTask"
+}
+{
+    "AfterCode": "true",
+    "BeforeCode": "startTime >= GetValue(predecessor,\"EndTime\")",
+    "ConstraintName": "OverlappingProdTime",
+    "ContextName": "Operation",
+    "FunctionName": "SetTask"
+}
+{
+    "AfterCode": "true",
+    "BeforeCode": "GetValue(self,\"Workload\").All(v => GetValue(v,\"StartTime\") < GetValue(op,\"Starttime\") && GetValue(v,\"EndTime\") > GetValue(op,\"Starttime\"))",
+    "ConstraintName": "StartTimeCollision",
+    "ContextName": "Machine",
+    "FunctionName": "SetEntry"
+}
+{
+    "AfterCode": "true",
+    "BeforeCode": "GetValue(self,\"Workload\").All(v => GetValue(v,\"StartTime\") < GetValue(op,\"EndTime\") && GetValue(v,\"EndTime\") > GetValue(op,\"EndTtime\"))",
+    "ConstraintName": "EndTimeCollision",
+    "ContextName": "Machine",
+    "FunctionName": "SetEntry"
+}
+{
+    "AfterCode": "GetValue(self,\"Capacity\") >= GetValue(self,\"Workload\").Duration.Sum()",
+    "BeforeCode": "true",
+    "ConstraintName": "CapacityCheck",
+    "ContextName": "Machine",
+    "FunctionName": "SetEntry"
+}
+{
+    "AfterCode": "GetValue(self,\"ProductionTime\") >= GetValue(self,\"Operation\").Duration.Sum()",
+    "BeforeCode": "true",
+    "ConstraintName": "CheckProductionTime",
+    "ContextName": "Planner",
+    "FunctionName": "Plan"
+}

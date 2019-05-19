@@ -1911,7 +1911,7 @@ PostfixOperator* pPostfixOperator(const char *str)
 
 
 
-#line 1915 "Parser.C" /* yacc.c:337  */
+#line 1915 "Parser.cpp" /* yacc.c:337  */
 # ifndef YY_NULLPTR
 #  if defined __cplusplus
 #   if 201103L <= __cplusplus
@@ -2073,7 +2073,7 @@ union YYSTYPE
   UnaryOperator* unaryoperator_;
   PostfixOperator* postfixoperator_;
 
-#line 2077 "Parser.C" /* yacc.c:352  */
+#line 2077 "Parser.cpp" /* yacc.c:352  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -3374,863 +3374,863 @@ yyreduce:
         case 2:
 #line 2035 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[0].listoclpackage_)->begin(),(yyvsp[0].listoclpackage_)->end()) ;(yyval.oclfile_) = new OCLf((yyvsp[0].listoclpackage_)); YY_RESULT_OCLfile_= (yyval.oclfile_); }
-#line 3378 "Parser.C" /* yacc.c:1652  */
+#line 3378 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 3:
 #line 2037 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listoclpackage_) = new ListOCLPackage() ; (yyval.listoclpackage_)->push_back((yyvsp[0].oclpackage_));  }
-#line 3384 "Parser.C" /* yacc.c:1652  */
+#line 3384 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 4:
 #line 2038 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listoclpackage_)->push_back((yyvsp[-1].oclpackage_)) ; (yyval.listoclpackage_) = (yyvsp[0].listoclpackage_) ;  }
-#line 3390 "Parser.C" /* yacc.c:1652  */
+#line 3390 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 5:
 #line 2040 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclpackage_) = new Pack((yyvsp[-2].packagename_), (yyvsp[-1].oclexpressions_));  }
-#line 3396 "Parser.C" /* yacc.c:1652  */
+#line 3396 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 6:
 #line 2042 "OCL.y" /* yacc.c:1652  */
     {  (yyval.packagename_) = new PackName((yyvsp[0].pathname_));  }
-#line 3402 "Parser.C" /* yacc.c:1652  */
+#line 3402 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 7:
 #line 2044 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclexpressions_) = new Constraints((yyvsp[0].listconstrnt_));  }
-#line 3408 "Parser.C" /* yacc.c:1652  */
+#line 3408 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 8:
 #line 2046 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listconstrnt_) = new ListConstrnt();  }
-#line 3414 "Parser.C" /* yacc.c:1652  */
+#line 3414 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 9:
 #line 2047 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[-1].listconstrnt_)->push_back((yyvsp[0].constrnt_)) ; (yyval.listconstrnt_) = (yyvsp[-1].listconstrnt_) ;  }
-#line 3420 "Parser.C" /* yacc.c:1652  */
+#line 3420 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 10:
 #line 2049 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[0].listconstrbody_)->begin(),(yyvsp[0].listconstrbody_)->end()) ;(yyval.constrnt_) = new Constr((yyvsp[-1].contextdeclaration_), (yyvsp[0].listconstrbody_)); YY_RESULT_Constrnt_= (yyval.constrnt_); }
-#line 3426 "Parser.C" /* yacc.c:1652  */
+#line 3426 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 11:
 #line 2051 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listconstrbody_) = new ListConstrBody() ; (yyval.listconstrbody_)->push_back((yyvsp[0].constrbody_));  }
-#line 3432 "Parser.C" /* yacc.c:1652  */
+#line 3432 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 12:
 #line 2052 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listconstrbody_)->push_back((yyvsp[-1].constrbody_)) ; (yyval.listconstrbody_) = (yyvsp[0].listconstrbody_) ;  }
-#line 3438 "Parser.C" /* yacc.c:1652  */
+#line 3438 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 13:
 #line 2054 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[0].listletexpression_)->begin(),(yyvsp[0].listletexpression_)->end()) ;(yyval.constrbody_) = new CBDefNamed((yyvsp[-2].string_), (yyvsp[0].listletexpression_));  }
-#line 3444 "Parser.C" /* yacc.c:1652  */
+#line 3444 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 14:
 #line 2055 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[0].listletexpression_)->begin(),(yyvsp[0].listletexpression_)->end()) ;(yyval.constrbody_) = new CBDef((yyvsp[0].listletexpression_));  }
-#line 3450 "Parser.C" /* yacc.c:1652  */
+#line 3450 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 15:
 #line 2056 "OCL.y" /* yacc.c:1652  */
     {  (yyval.constrbody_) = new CBNamed((yyvsp[-3].stereotype_), (yyvsp[-2].string_), (yyvsp[0].oclexpression_));  }
-#line 3456 "Parser.C" /* yacc.c:1652  */
+#line 3456 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 16:
 #line 2057 "OCL.y" /* yacc.c:1652  */
     {  (yyval.constrbody_) = new CB((yyvsp[-2].stereotype_), (yyvsp[0].oclexpression_));  }
-#line 3462 "Parser.C" /* yacc.c:1652  */
+#line 3462 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 17:
 #line 2059 "OCL.y" /* yacc.c:1652  */
     {  (yyval.contextdeclaration_) = new CDOper((yyvsp[0].operationcontext_));  }
-#line 3468 "Parser.C" /* yacc.c:1652  */
+#line 3468 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 18:
 #line 2060 "OCL.y" /* yacc.c:1652  */
     {  (yyval.contextdeclaration_) = new CDClassif((yyvsp[0].classifiercontext_));  }
-#line 3474 "Parser.C" /* yacc.c:1652  */
+#line 3474 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 19:
 #line 2062 "OCL.y" /* yacc.c:1652  */
     {  (yyval.classifiercontext_) = new CCType((yyvsp[-2].string_), (yyvsp[0].string_));  }
-#line 3480 "Parser.C" /* yacc.c:1652  */
+#line 3480 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 20:
 #line 2063 "OCL.y" /* yacc.c:1652  */
     {  (yyval.classifiercontext_) = new CC((yyvsp[0].string_));  }
-#line 3486 "Parser.C" /* yacc.c:1652  */
+#line 3486 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 21:
 #line 2065 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-1].listformalparameter_)->begin(),(yyvsp[-1].listformalparameter_)->end()) ;(yyval.operationcontext_) = new OpC((yyvsp[-5].string_), (yyvsp[-3].operationname_), (yyvsp[-1].listformalparameter_));  }
-#line 3492 "Parser.C" /* yacc.c:1652  */
+#line 3492 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 22:
 #line 2066 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-3].listformalparameter_)->begin(),(yyvsp[-3].listformalparameter_)->end()) ;(yyval.operationcontext_) = new OpCRT((yyvsp[-7].string_), (yyvsp[-5].operationname_), (yyvsp[-3].listformalparameter_), (yyvsp[0].returntype_));  }
-#line 3498 "Parser.C" /* yacc.c:1652  */
+#line 3498 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 23:
 #line 2068 "OCL.y" /* yacc.c:1652  */
     {  (yyval.stereotype_) = new Pre();  }
-#line 3504 "Parser.C" /* yacc.c:1652  */
+#line 3504 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 24:
 #line 2069 "OCL.y" /* yacc.c:1652  */
     {  (yyval.stereotype_) = new Post();  }
-#line 3510 "Parser.C" /* yacc.c:1652  */
+#line 3510 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 25:
 #line 2070 "OCL.y" /* yacc.c:1652  */
     {  (yyval.stereotype_) = new Inv();  }
-#line 3516 "Parser.C" /* yacc.c:1652  */
+#line 3516 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 26:
 #line 2072 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new OpName((yyvsp[0].string_));  }
-#line 3522 "Parser.C" /* yacc.c:1652  */
+#line 3522 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 27:
 #line 2073 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Eq();  }
-#line 3528 "Parser.C" /* yacc.c:1652  */
+#line 3528 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 28:
 #line 2074 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Add();  }
-#line 3534 "Parser.C" /* yacc.c:1652  */
+#line 3534 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 29:
 #line 2075 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Sub();  }
-#line 3540 "Parser.C" /* yacc.c:1652  */
+#line 3540 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 30:
 #line 2076 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new LST();  }
-#line 3546 "Parser.C" /* yacc.c:1652  */
+#line 3546 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 31:
 #line 2077 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new LSTE();  }
-#line 3552 "Parser.C" /* yacc.c:1652  */
+#line 3552 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 32:
 #line 2078 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new GRT();  }
-#line 3558 "Parser.C" /* yacc.c:1652  */
+#line 3558 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 33:
 #line 2079 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new GRTE();  }
-#line 3564 "Parser.C" /* yacc.c:1652  */
+#line 3564 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 34:
 #line 2080 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Div();  }
-#line 3570 "Parser.C" /* yacc.c:1652  */
+#line 3570 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 35:
 #line 2081 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Mult();  }
-#line 3576 "Parser.C" /* yacc.c:1652  */
+#line 3576 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 36:
 #line 2082 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new NEq();  }
-#line 3582 "Parser.C" /* yacc.c:1652  */
+#line 3582 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 37:
 #line 2083 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Impl();  }
-#line 3588 "Parser.C" /* yacc.c:1652  */
+#line 3588 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 38:
 #line 2084 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Not();  }
-#line 3594 "Parser.C" /* yacc.c:1652  */
+#line 3594 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 39:
 #line 2085 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Or();  }
-#line 3600 "Parser.C" /* yacc.c:1652  */
+#line 3600 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 40:
 #line 2086 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new Xor();  }
-#line 3606 "Parser.C" /* yacc.c:1652  */
+#line 3606 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 41:
 #line 2087 "OCL.y" /* yacc.c:1652  */
     {  (yyval.operationname_) = new And();  }
-#line 3612 "Parser.C" /* yacc.c:1652  */
+#line 3612 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 42:
 #line 2089 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listformalparameter_) = new ListFormalParameter();  }
-#line 3618 "Parser.C" /* yacc.c:1652  */
+#line 3618 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 43:
 #line 2090 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listformalparameter_) = new ListFormalParameter() ; (yyval.listformalparameter_)->push_back((yyvsp[0].formalparameter_));  }
-#line 3624 "Parser.C" /* yacc.c:1652  */
+#line 3624 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 44:
 #line 2091 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listformalparameter_)->push_back((yyvsp[-2].formalparameter_)) ; (yyval.listformalparameter_) = (yyvsp[0].listformalparameter_) ;  }
-#line 3630 "Parser.C" /* yacc.c:1652  */
+#line 3630 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 45:
 #line 2093 "OCL.y" /* yacc.c:1652  */
     {  (yyval.formalparameter_) = new FP((yyvsp[-2].string_), (yyvsp[0].typespecifier_));  }
-#line 3636 "Parser.C" /* yacc.c:1652  */
+#line 3636 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 46:
 #line 2095 "OCL.y" /* yacc.c:1652  */
     {  (yyval.typespecifier_) = new TSsimple((yyvsp[0].simpletypespecifier_));  }
-#line 3642 "Parser.C" /* yacc.c:1652  */
+#line 3642 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 47:
 #line 2096 "OCL.y" /* yacc.c:1652  */
     {  (yyval.typespecifier_) = new TScoll((yyvsp[0].collectiontype_));  }
-#line 3648 "Parser.C" /* yacc.c:1652  */
+#line 3648 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 48:
 #line 2098 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectiontype_) = new CT((yyvsp[-3].collectionkind_), (yyvsp[-1].simpletypespecifier_));  }
-#line 3654 "Parser.C" /* yacc.c:1652  */
+#line 3654 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 49:
 #line 2100 "OCL.y" /* yacc.c:1652  */
     {  (yyval.returntype_) = new RT((yyvsp[0].typespecifier_));  }
-#line 3660 "Parser.C" /* yacc.c:1652  */
+#line 3660 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 50:
 #line 2102 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclexpression_) = new OCLExp((yyvsp[0].expression_));  }
-#line 3666 "Parser.C" /* yacc.c:1652  */
+#line 3666 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 51:
 #line 2103 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-2].listletexpression_)->begin(),(yyvsp[-2].listletexpression_)->end()) ;(yyval.oclexpression_) = new OCLExpLet((yyvsp[-2].listletexpression_), (yyvsp[0].expression_));  }
-#line 3672 "Parser.C" /* yacc.c:1652  */
+#line 3672 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 52:
 #line 2105 "OCL.y" /* yacc.c:1652  */
     {  (yyval.letexpression_) = new LENoParam((yyvsp[-2].string_), (yyvsp[0].expression_));  }
-#line 3678 "Parser.C" /* yacc.c:1652  */
+#line 3678 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 53:
 #line 2106 "OCL.y" /* yacc.c:1652  */
     {  (yyval.letexpression_) = new LENoParamType((yyvsp[-4].string_), (yyvsp[-2].typespecifier_), (yyvsp[0].expression_));  }
-#line 3684 "Parser.C" /* yacc.c:1652  */
+#line 3684 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 54:
 #line 2107 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-3].listformalparameter_)->begin(),(yyvsp[-3].listformalparameter_)->end()) ;(yyval.letexpression_) = new LE((yyvsp[-5].string_), (yyvsp[-3].listformalparameter_), (yyvsp[0].expression_));  }
-#line 3690 "Parser.C" /* yacc.c:1652  */
+#line 3690 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 55:
 #line 2108 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-5].listformalparameter_)->begin(),(yyvsp[-5].listformalparameter_)->end()) ;(yyval.letexpression_) = new LEType((yyvsp[-7].string_), (yyvsp[-5].listformalparameter_), (yyvsp[-2].typespecifier_), (yyvsp[0].expression_));  }
-#line 3696 "Parser.C" /* yacc.c:1652  */
+#line 3696 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 56:
 #line 2110 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listletexpression_) = new ListLetExpression() ; (yyval.listletexpression_)->push_back((yyvsp[0].letexpression_));  }
-#line 3702 "Parser.C" /* yacc.c:1652  */
+#line 3702 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 57:
 #line 2111 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listletexpression_)->push_back((yyvsp[-1].letexpression_)) ; (yyval.listletexpression_) = (yyvsp[0].listletexpression_) ;  }
-#line 3708 "Parser.C" /* yacc.c:1652  */
+#line 3708 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 58:
 #line 2113 "OCL.y" /* yacc.c:1652  */
     {  (yyval.ifexpression_) = new IfExp((yyvsp[-5].expression_), (yyvsp[-3].expression_), (yyvsp[-1].expression_));  }
-#line 3714 "Parser.C" /* yacc.c:1652  */
+#line 3714 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 59:
 #line 2115 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpImpl((yyvsp[-2].expression_), (yyvsp[0].expression_)); YY_RESULT_Expression_= (yyval.expression_); }
-#line 3720 "Parser.C" /* yacc.c:1652  */
+#line 3720 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 60:
 #line 2116 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_); YY_RESULT_Expression_= (yyval.expression_); }
-#line 3726 "Parser.C" /* yacc.c:1652  */
+#line 3726 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 61:
 #line 2118 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpLog((yyvsp[-2].expression_), (yyvsp[-1].logicaloperator_), (yyvsp[0].expression_));  }
-#line 3732 "Parser.C" /* yacc.c:1652  */
+#line 3732 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 62:
 #line 2119 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3738 "Parser.C" /* yacc.c:1652  */
+#line 3738 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 63:
 #line 2121 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpEq((yyvsp[-2].expression_), (yyvsp[-1].equalityoperator_), (yyvsp[0].expression_));  }
-#line 3744 "Parser.C" /* yacc.c:1652  */
+#line 3744 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 64:
 #line 2122 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3750 "Parser.C" /* yacc.c:1652  */
+#line 3750 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 65:
 #line 2124 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpRel((yyvsp[-2].expression_), (yyvsp[-1].relationaloperator_), (yyvsp[0].expression_));  }
-#line 3756 "Parser.C" /* yacc.c:1652  */
+#line 3756 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 66:
 #line 2125 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3762 "Parser.C" /* yacc.c:1652  */
+#line 3762 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 67:
 #line 2127 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpAdd((yyvsp[-2].expression_), (yyvsp[-1].addoperator_), (yyvsp[0].expression_));  }
-#line 3768 "Parser.C" /* yacc.c:1652  */
+#line 3768 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 68:
 #line 2128 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3774 "Parser.C" /* yacc.c:1652  */
+#line 3774 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 69:
 #line 2130 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpMul((yyvsp[-2].expression_), (yyvsp[-1].multiplyoperator_), (yyvsp[0].expression_));  }
-#line 3780 "Parser.C" /* yacc.c:1652  */
+#line 3780 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 70:
 #line 2131 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3786 "Parser.C" /* yacc.c:1652  */
+#line 3786 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 71:
 #line 2133 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EOpUn((yyvsp[-1].unaryoperator_), (yyvsp[0].expression_));  }
-#line 3792 "Parser.C" /* yacc.c:1652  */
+#line 3792 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 72:
 #line 2134 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3798 "Parser.C" /* yacc.c:1652  */
+#line 3798 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 73:
 #line 2136 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EExplPropCall((yyvsp[-2].expression_), (yyvsp[-1].postfixoperator_), (yyvsp[0].propertycall_));  }
-#line 3804 "Parser.C" /* yacc.c:1652  */
+#line 3804 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 74:
 #line 2137 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-1].listmessagearg_)->begin(),(yyvsp[-1].listmessagearg_)->end()) ;(yyval.expression_) = new EMessage((yyvsp[-5].expression_), (yyvsp[-3].pathname_), (yyvsp[-1].listmessagearg_));  }
-#line 3810 "Parser.C" /* yacc.c:1652  */
+#line 3810 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 75:
 #line 2138 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[0].expression_);  }
-#line 3816 "Parser.C" /* yacc.c:1652  */
+#line 3816 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 76:
 #line 2140 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EImplPropCall((yyvsp[0].propertycall_));  }
-#line 3822 "Parser.C" /* yacc.c:1652  */
+#line 3822 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 77:
 #line 2141 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new ELitColl((yyvsp[0].literalcollection_));  }
-#line 3828 "Parser.C" /* yacc.c:1652  */
+#line 3828 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 78:
 #line 2142 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new ELit((yyvsp[0].oclliteral_));  }
-#line 3834 "Parser.C" /* yacc.c:1652  */
+#line 3834 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 79:
 #line 2143 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new EIfExp((yyvsp[0].ifexpression_));  }
-#line 3840 "Parser.C" /* yacc.c:1652  */
+#line 3840 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 80:
 #line 2144 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = new ENull();  }
-#line 3846 "Parser.C" /* yacc.c:1652  */
+#line 3846 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 81:
 #line 2145 "OCL.y" /* yacc.c:1652  */
     {  (yyval.expression_) = (yyvsp[-1].expression_);  }
-#line 3852 "Parser.C" /* yacc.c:1652  */
+#line 3852 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 82:
 #line 2147 "OCL.y" /* yacc.c:1652  */
     {  (yyval.messagearg_) = new MAExpr((yyvsp[0].expression_));  }
-#line 3858 "Parser.C" /* yacc.c:1652  */
+#line 3858 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 83:
 #line 2148 "OCL.y" /* yacc.c:1652  */
     {  (yyval.messagearg_) = new MAUnspec();  }
-#line 3864 "Parser.C" /* yacc.c:1652  */
+#line 3864 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 84:
 #line 2149 "OCL.y" /* yacc.c:1652  */
     {  (yyval.messagearg_) = new MAUnspecTyped((yyvsp[0].typespecifier_));  }
-#line 3870 "Parser.C" /* yacc.c:1652  */
+#line 3870 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 85:
 #line 2151 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listmessagearg_) = new ListMessageArg();  }
-#line 3876 "Parser.C" /* yacc.c:1652  */
+#line 3876 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 86:
 #line 2152 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listmessagearg_) = new ListMessageArg() ; (yyval.listmessagearg_)->push_back((yyvsp[0].messagearg_));  }
-#line 3882 "Parser.C" /* yacc.c:1652  */
+#line 3882 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 87:
 #line 2153 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listmessagearg_)->push_back((yyvsp[-2].messagearg_)) ; (yyval.listmessagearg_) = (yyvsp[0].listmessagearg_) ;  }
-#line 3888 "Parser.C" /* yacc.c:1652  */
+#line 3888 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 88:
 #line 2155 "OCL.y" /* yacc.c:1652  */
     {  (yyval.propertycall_) = new PCall((yyvsp[-3].pathname_), (yyvsp[-2].posstimeexpression_), (yyvsp[-1].possqualifiers_), (yyvsp[0].posspropcallparam_));  }
-#line 3894 "Parser.C" /* yacc.c:1652  */
+#line 3894 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 89:
 #line 2157 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[0].listpname_)->begin(),(yyvsp[0].listpname_)->end()) ;(yyval.pathname_) = new PathN((yyvsp[0].listpname_));  }
-#line 3900 "Parser.C" /* yacc.c:1652  */
+#line 3900 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 90:
 #line 2159 "OCL.y" /* yacc.c:1652  */
     {  (yyval.pname_) = new PN((yyvsp[0].string_));  }
-#line 3906 "Parser.C" /* yacc.c:1652  */
+#line 3906 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 91:
 #line 2161 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listpname_) = new ListPName() ; (yyval.listpname_)->push_back((yyvsp[0].pname_));  }
-#line 3912 "Parser.C" /* yacc.c:1652  */
+#line 3912 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 92:
 #line 2162 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listpname_)->push_back((yyvsp[-2].pname_)) ; (yyval.listpname_) = (yyvsp[0].listpname_) ;  }
-#line 3918 "Parser.C" /* yacc.c:1652  */
+#line 3918 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 93:
 #line 2164 "OCL.y" /* yacc.c:1652  */
     {  (yyval.possqualifiers_) = new NoQual();  }
-#line 3924 "Parser.C" /* yacc.c:1652  */
+#line 3924 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 94:
 #line 2165 "OCL.y" /* yacc.c:1652  */
     {  (yyval.possqualifiers_) = new Qual((yyvsp[0].qualifiers_));  }
-#line 3930 "Parser.C" /* yacc.c:1652  */
+#line 3930 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 95:
 #line 2167 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-1].listexpression_)->begin(),(yyvsp[-1].listexpression_)->end()) ;(yyval.qualifiers_) = new Quals((yyvsp[-1].listexpression_));  }
-#line 3936 "Parser.C" /* yacc.c:1652  */
+#line 3936 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 96:
 #line 2169 "OCL.y" /* yacc.c:1652  */
     {  (yyval.posstimeexpression_) = new NoTE();  }
-#line 3942 "Parser.C" /* yacc.c:1652  */
+#line 3942 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 97:
 #line 2170 "OCL.y" /* yacc.c:1652  */
     {  (yyval.posstimeexpression_) = new AtPre();  }
-#line 3948 "Parser.C" /* yacc.c:1652  */
+#line 3948 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 98:
 #line 2172 "OCL.y" /* yacc.c:1652  */
     {  (yyval.posspropcallparam_) = new NoPCP();  }
-#line 3954 "Parser.C" /* yacc.c:1652  */
+#line 3954 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 99:
 #line 2173 "OCL.y" /* yacc.c:1652  */
     {  (yyval.posspropcallparam_) = new PCPs((yyvsp[0].propertycallparameters_));  }
-#line 3960 "Parser.C" /* yacc.c:1652  */
+#line 3960 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 100:
 #line 2184 "OCL.y" /* yacc.c:1652  */
     {  (yyval.propertycallparameters_) = new PCPNoDeclNoParam();  }
-#line 3966 "Parser.C" /* yacc.c:1652  */
+#line 3966 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 101:
 #line 2185 "OCL.y" /* yacc.c:1652  */
     {  (yyval.propertycallparameters_) = new PCPConcrete((yyvsp[-2].expression_), (yyvsp[-1].listpcphelper_));  }
-#line 3972 "Parser.C" /* yacc.c:1652  */
+#line 3972 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 102:
 #line 2187 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listexpression_) = new ListExpression();  }
-#line 3978 "Parser.C" /* yacc.c:1652  */
+#line 3978 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 103:
 #line 2188 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listexpression_) = new ListExpression() ; (yyval.listexpression_)->push_back((yyvsp[0].expression_));  }
-#line 3984 "Parser.C" /* yacc.c:1652  */
+#line 3984 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 104:
 #line 2189 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listexpression_)->push_back((yyvsp[-2].expression_)) ; (yyval.listexpression_) = (yyvsp[0].listexpression_) ;  }
-#line 3990 "Parser.C" /* yacc.c:1652  */
+#line 3990 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 105:
 #line 2191 "OCL.y" /* yacc.c:1652  */
     {  (yyval.pcphelper_) = new PCPComma((yyvsp[0].expression_));  }
-#line 3996 "Parser.C" /* yacc.c:1652  */
+#line 3996 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 106:
 #line 2192 "OCL.y" /* yacc.c:1652  */
     {  (yyval.pcphelper_) = new PCPColon((yyvsp[0].simpletypespecifier_));  }
-#line 4002 "Parser.C" /* yacc.c:1652  */
+#line 4002 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 107:
 #line 2193 "OCL.y" /* yacc.c:1652  */
     {  (yyval.pcphelper_) = new PCPIterate((yyvsp[-4].string_), (yyvsp[-2].typespecifier_), (yyvsp[0].expression_));  }
-#line 4008 "Parser.C" /* yacc.c:1652  */
+#line 4008 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 108:
 #line 2194 "OCL.y" /* yacc.c:1652  */
     {  (yyval.pcphelper_) = new PCPBar((yyvsp[0].expression_));  }
-#line 4014 "Parser.C" /* yacc.c:1652  */
+#line 4014 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 109:
 #line 2196 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listpcphelper_) = new ListPCPHelper();  }
-#line 4020 "Parser.C" /* yacc.c:1652  */
+#line 4020 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 110:
 #line 2197 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[-1].listpcphelper_)->push_back((yyvsp[0].pcphelper_)) ; (yyval.listpcphelper_) = (yyvsp[-1].listpcphelper_) ;  }
-#line 4026 "Parser.C" /* yacc.c:1652  */
+#line 4026 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 111:
 #line 2199 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclliteral_) = new LitStr((yyvsp[0].string_));  }
-#line 4032 "Parser.C" /* yacc.c:1652  */
+#line 4032 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 112:
 #line 2200 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclliteral_) = new LitNum((yyvsp[0].oclnumber_));  }
-#line 4038 "Parser.C" /* yacc.c:1652  */
+#line 4038 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 113:
 #line 2201 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclliteral_) = new LitBoolTrue();  }
-#line 4044 "Parser.C" /* yacc.c:1652  */
+#line 4044 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 114:
 #line 2202 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclliteral_) = new LitBoolFalse();  }
-#line 4050 "Parser.C" /* yacc.c:1652  */
+#line 4050 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 115:
 #line 2204 "OCL.y" /* yacc.c:1652  */
     {  (yyval.simpletypespecifier_) = new STSpec((yyvsp[0].pathname_));  }
-#line 4056 "Parser.C" /* yacc.c:1652  */
+#line 4056 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 116:
 #line 2206 "OCL.y" /* yacc.c:1652  */
     {  std::reverse((yyvsp[-1].listcollectionitem_)->begin(),(yyvsp[-1].listcollectionitem_)->end()) ;(yyval.literalcollection_) = new LCollection((yyvsp[-3].collectionkind_), (yyvsp[-1].listcollectionitem_));  }
-#line 4062 "Parser.C" /* yacc.c:1652  */
+#line 4062 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 117:
 #line 2207 "OCL.y" /* yacc.c:1652  */
     {  (yyval.literalcollection_) = new LCollectionEmpty((yyvsp[-2].collectionkind_));  }
-#line 4068 "Parser.C" /* yacc.c:1652  */
+#line 4068 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 118:
 #line 2209 "OCL.y" /* yacc.c:1652  */
     {  (yyval.listcollectionitem_) = new ListCollectionItem() ; (yyval.listcollectionitem_)->push_back((yyvsp[0].collectionitem_));  }
-#line 4074 "Parser.C" /* yacc.c:1652  */
+#line 4074 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 119:
 #line 2210 "OCL.y" /* yacc.c:1652  */
     {  (yyvsp[0].listcollectionitem_)->push_back((yyvsp[-2].collectionitem_)) ; (yyval.listcollectionitem_) = (yyvsp[0].listcollectionitem_) ;  }
-#line 4080 "Parser.C" /* yacc.c:1652  */
+#line 4080 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 120:
 #line 2212 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectionitem_) = new CI((yyvsp[0].expression_));  }
-#line 4086 "Parser.C" /* yacc.c:1652  */
+#line 4086 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 121:
 #line 2213 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectionitem_) = new CIRange((yyvsp[-2].expression_), (yyvsp[0].expression_));  }
-#line 4092 "Parser.C" /* yacc.c:1652  */
+#line 4092 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 122:
 #line 2215 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclnumber_) = new NumInt((yyvsp[0].int_));  }
-#line 4098 "Parser.C" /* yacc.c:1652  */
+#line 4098 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 123:
 #line 2216 "OCL.y" /* yacc.c:1652  */
     {  (yyval.oclnumber_) = new NumDouble((yyvsp[0].double_));  }
-#line 4104 "Parser.C" /* yacc.c:1652  */
+#line 4104 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 124:
 #line 2218 "OCL.y" /* yacc.c:1652  */
     {  (yyval.logicaloperator_) = new LAnd();  }
-#line 4110 "Parser.C" /* yacc.c:1652  */
+#line 4110 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 125:
 #line 2219 "OCL.y" /* yacc.c:1652  */
     {  (yyval.logicaloperator_) = new LOr();  }
-#line 4116 "Parser.C" /* yacc.c:1652  */
+#line 4116 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 126:
 #line 2220 "OCL.y" /* yacc.c:1652  */
     {  (yyval.logicaloperator_) = new LXor();  }
-#line 4122 "Parser.C" /* yacc.c:1652  */
+#line 4122 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 127:
 #line 2222 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectionkind_) = new Set();  }
-#line 4128 "Parser.C" /* yacc.c:1652  */
+#line 4128 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 128:
 #line 2223 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectionkind_) = new Bag();  }
-#line 4134 "Parser.C" /* yacc.c:1652  */
+#line 4134 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 129:
 #line 2224 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectionkind_) = new Sequence();  }
-#line 4140 "Parser.C" /* yacc.c:1652  */
+#line 4140 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 130:
 #line 2225 "OCL.y" /* yacc.c:1652  */
     {  (yyval.collectionkind_) = new Collection();  }
-#line 4146 "Parser.C" /* yacc.c:1652  */
+#line 4146 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 131:
 #line 2227 "OCL.y" /* yacc.c:1652  */
     {  (yyval.equalityoperator_) = new EEq();  }
-#line 4152 "Parser.C" /* yacc.c:1652  */
+#line 4152 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 132:
 #line 2228 "OCL.y" /* yacc.c:1652  */
     {  (yyval.equalityoperator_) = new ENEq();  }
-#line 4158 "Parser.C" /* yacc.c:1652  */
+#line 4158 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 133:
 #line 2230 "OCL.y" /* yacc.c:1652  */
     {  (yyval.relationaloperator_) = new RGT();  }
-#line 4164 "Parser.C" /* yacc.c:1652  */
+#line 4164 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 134:
 #line 2231 "OCL.y" /* yacc.c:1652  */
     {  (yyval.relationaloperator_) = new RGTE();  }
-#line 4170 "Parser.C" /* yacc.c:1652  */
+#line 4170 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 135:
 #line 2232 "OCL.y" /* yacc.c:1652  */
     {  (yyval.relationaloperator_) = new RLT();  }
-#line 4176 "Parser.C" /* yacc.c:1652  */
+#line 4176 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 136:
 #line 2233 "OCL.y" /* yacc.c:1652  */
     {  (yyval.relationaloperator_) = new RLTE();  }
-#line 4182 "Parser.C" /* yacc.c:1652  */
+#line 4182 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 137:
 #line 2235 "OCL.y" /* yacc.c:1652  */
     {  (yyval.addoperator_) = new AAdd();  }
-#line 4188 "Parser.C" /* yacc.c:1652  */
+#line 4188 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 138:
 #line 2236 "OCL.y" /* yacc.c:1652  */
     {  (yyval.addoperator_) = new ASub();  }
-#line 4194 "Parser.C" /* yacc.c:1652  */
+#line 4194 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 139:
 #line 2238 "OCL.y" /* yacc.c:1652  */
     {  (yyval.multiplyoperator_) = new MMult();  }
-#line 4200 "Parser.C" /* yacc.c:1652  */
+#line 4200 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 140:
 #line 2239 "OCL.y" /* yacc.c:1652  */
     {  (yyval.multiplyoperator_) = new MDiv();  }
-#line 4206 "Parser.C" /* yacc.c:1652  */
+#line 4206 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 141:
 #line 2241 "OCL.y" /* yacc.c:1652  */
     {  (yyval.unaryoperator_) = new UMin();  }
-#line 4212 "Parser.C" /* yacc.c:1652  */
+#line 4212 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 142:
 #line 2242 "OCL.y" /* yacc.c:1652  */
     {  (yyval.unaryoperator_) = new UNot();  }
-#line 4218 "Parser.C" /* yacc.c:1652  */
+#line 4218 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 143:
 #line 2244 "OCL.y" /* yacc.c:1652  */
     {  (yyval.postfixoperator_) = new PDot();  }
-#line 4224 "Parser.C" /* yacc.c:1652  */
+#line 4224 "Parser.cpp" /* yacc.c:1652  */
     break;
 
   case 144:
 #line 2245 "OCL.y" /* yacc.c:1652  */
     {  (yyval.postfixoperator_) = new PArrow();  }
-#line 4230 "Parser.C" /* yacc.c:1652  */
+#line 4230 "Parser.cpp" /* yacc.c:1652  */
     break;
 
 
-#line 4234 "Parser.C" /* yacc.c:1652  */
+#line 4234 "Parser.cpp" /* yacc.c:1652  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
