@@ -1,54 +1,42 @@
 {
-    "after": true,
-    "atPre": false,
-    "before": "duration >= 0",
-    "class": "Operation",
-    "name": "DurationNotNegativ",
-    "operation": "SetTask()",
-    "type": "pre"
+    "AfterCode": "true",
+    "BeforeCode": "duration >= 0",
+    "ConstraintName": "DurationNotNegativ",
+    "ContextName": "Operation",
+    "FunctionName": "SetTask"
 }
 {
-    "after": true,
-    "atPre": false,
-    "before": "startTime >= predecessor.EndTime",
-    "class": "Operation",
-    "name": "OverlappingProdTime",
-    "operation": "SetTask()",
-    "type": "pre"
+    "AfterCode": "true",
+    "BeforeCode": "startTime >= predecessor.GetValue(\"EndTime\")",
+    "ConstraintName": "OverlappingProdTime",
+    "ContextName": "Operation",
+    "FunctionName": "SetTask"
 }
 {
-    "after": true,
-    "atPre": false,
-    "before": "this.Workload.All(v => v.StartTime < op.Starttime && v.EndTime > op.Starttime)",
-    "class": "Machine",
-    "name": "StartTimeCollision",
-    "operation": "SetEntry(Operation op)",
-    "type": "pre"
+    "AfterCode": "true",
+    "BeforeCode": "((List<dynamic>) (self.GetValue(\"Workload\"))).All(v => v.GetValue(\"StartTime\") < op.GetValue(\"Starttime\") && v.GetValue(\"EndTime\") > op.GetValue(\"Starttime\"))",
+    "ConstraintName": "StartTimeCollision",
+    "ContextName": "Machine",
+    "FunctionName": "SetEntry"
 }
 {
-    "after": true,
-    "atPre": false,
-    "before": "this.Workload.All(v => v.StartTime < op.EndTime && v.EndTime > op.EndTtime)",
-    "class": "Machine",
-    "name": "EndTimeCollision",
-    "operation": "SetEntry(Operation op)",
-    "type": "pre"
+    "AfterCode": "true",
+    "BeforeCode": "((List<dynamic>) (self.GetValue(\"Workload\"))).All(v => v.GetValue(\"StartTime\") < op.GetValue(\"EndTime\") && v.GetValue(\"EndTime\") > op.GetValue(\"EndTtime\"))",
+    "ConstraintName": "EndTimeCollision",
+    "ContextName": "Machine",
+    "FunctionName": "SetEntry"
 }
 {
-    "after": "this.Capacity >= this.Workload.Duration.Sum()",
-    "atPre": false,
-    "before": true,
-    "class": "Machine",
-    "name": "CapacityCheck",
-    "operation": "SetEntry()",
-    "type": "post"
+    "AfterCode": "((List<int>) (self.GetValue(\"Capacity\") >= self.GetValue(\"Workload\").Duration)).Sum()",
+    "BeforeCode": "true",
+    "ConstraintName": "CapacityCheck",
+    "ContextName": "Machine",
+    "FunctionName": "SetEntry"
 }
 {
-    "after": "this.ProductionTime >= this.Operation.Duration.Sum()",
-    "atPre": false,
-    "before": true,
-    "class": "Planner",
-    "name": "CheckProductionTime",
-    "operation": "Plan()",
-    "type": "post"
+    "AfterCode": "((List<int>) (self.GetValue(\"ProductionTime\") >= self.GetValue(\"Operation\").Duration)).Sum()",
+    "BeforeCode": "true",
+    "ConstraintName": "CheckProductionTime",
+    "ContextName": "Planner",
+    "FunctionName": "Plan"
 }

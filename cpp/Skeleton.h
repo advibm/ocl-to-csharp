@@ -19,7 +19,6 @@ private:
   std::string cs = "";
 
   // bool localVarNext = false;
-  std::vector<std::string> idents;
   
 public:
   void process(Visitable *v);

@@ -86,9 +86,12 @@ bool hasExcludes = false;
 bool isOperation = false;
 json j[99];
 
+std::vector<std::string> idents;
+
 void Skeleton::visitOCLf(OCLf *oc_lf) {
   /* Code For OCLf Goes Here */
   number = 0;
+  
   oc_lf->listoclpackage_->accept(this);
 
   // write prettified JSON to another file
@@ -693,10 +696,11 @@ void Skeleton::visitAtPre(AtPre *at_pre) {
   // j[number]["atPre"] = true;
 
   std::size_t found;
-  std::size_t temp = xxx.find("this");
+  std::size_t temp = xxx.find("self");
+  std::cout << temp;
   while (temp != std::string::npos) {
     found = temp;
-    temp = xxx.find("this", found + 1);
+    temp = xxx.find("self", found + 1);
   }
   xxx.replace(found, 4, "pre");
 }
